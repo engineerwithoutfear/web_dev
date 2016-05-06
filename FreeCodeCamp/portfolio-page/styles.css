@@ -46,20 +46,12 @@ h2 {
   color: white;
 }
 
-#about {
-  background-color: white;
-}
-
-#pic {
+#about, #pic, #location {
   background-color: white;
 }
 
 #portfolio {
   background-color: #e9ece5;
-}
-
-#location {
-  background-color: white;
 }
 
 #contact {
@@ -72,4 +64,16 @@ h2 {
 
 .container-fluid {
   max-width: 80%;
+}
+
+.thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
 }
