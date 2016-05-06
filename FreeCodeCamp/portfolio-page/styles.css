@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body {
+  height: 100%;
+  background: #3b3a36;
+  color: #3b3a36;
+}
+
+.NYC {
+  background-color: black;
+  color: white;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+.navbar {
+  background: #3b3a36;
+}
+
+.navbar-default .navbar-brand,
+#myNavbar > ul > li > a {
+  color: white;
+}
+
+.btn-default {
+  background: #3b3a36;
+  color: #e9ece5;
+}
+
+.btn-default:hover,
+#myNavbar > ul > li > a:hover,
+.navbar-default .navbar-brand:hover {
+  background: #2f2e2b;
+  color: white;
+}
+
+#about {
+  background-color: white;
+}
+
+#pic {
+  background-color: white;
+}
+
+#portfolio {
+  background-color: #e9ece5;
+}
+
+#location {
+  background-color: white;
+}
+
+#contact {
+  background-color: #b3c2bf;
+}
+
+#footer {
+  color: #e9ece5;
+}
+
+.container-fluid {
+  max-width: 80%;
+}
