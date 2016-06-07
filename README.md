@@ -6,3 +6,6 @@ A collection of web development projects created while learning <A HREF="http://
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/weather-report/index.html">Weather App</a>
 
+<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/random-quote-machine/index.html">Random Quote Machine</a>
+
+
