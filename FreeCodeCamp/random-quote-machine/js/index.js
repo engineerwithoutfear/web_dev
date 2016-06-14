@@ -416,7 +416,7 @@ source: "/u/afrankiewicz12, Reddit Comment"
 }
 ,
 {
-quote: "Objectification is a funny thing. When a woman is objectified, she's usually seen an object of sex or beauty. When a man is objectified, he's usually seen as an object of war or of work. Just as many women would love to be \"objectified\" as useful or effective, many men would love to be \"objectified\" as enjoyable or attractive. <br><br>As humans, people of any gender tend to enjoy novel experiences. Like it or not, there is more than one kind of objectification and men are probably objectified about as much as women are.", 
+quote: "Objectification is a funny thing. When a woman is objectified, she's usually seen an object of sex or beauty. When a man is objectified, he's usually seen as an object of war or of work. Just as many women would love to be \"objectified\" as useful or effective, many men would love to be \"objectified\" as enjoyable or attractive. As humans, people of any gender tend to enjoy novel experiences. Like it or not, there is more than one kind of objectification and men are probably objectified about as much as women are.", 
 source: "/u/nonsensepoem, Reddit Comment"
 }
 ,
