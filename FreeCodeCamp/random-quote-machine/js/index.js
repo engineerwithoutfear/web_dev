@@ -161,7 +161,7 @@ source: "Unknown"
 }
 ,
 {
-quote: "At that time (1909) the chief engineer was almost always the chief test pilot as well. That had the fortunate result of eliminating poor engineering early in aviation.", 
+quote: "At that time in 1909, the chief engineer was almost always the chief test pilot as well. That had the fortunate result of eliminating poor engineering early in aviation.", 
 source: "Igor Sikorsky"
 }
 ,
