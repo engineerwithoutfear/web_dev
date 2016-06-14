@@ -60,7 +60,7 @@ source: "Russell Baker"
 } 
 ,
 {
-quote: "When you leave New York, you are astonished at how clean the rest of the world is.<br><br>Clean is not enough.", 
+quote: "When you leave New York, you are astonished at how clean the rest of the world is.<br>Clean is not enough.", 
 source: "Fran Lebowitz"
 } 
 ,
