@@ -176,7 +176,7 @@ source: "George Orwell"
 }
 ,
 {
-quote: "...notice the phrase 'necessary murder'. It could only be written by a person to whom murder is at most a word. To me, murder is something to be avoided. So it is to any ordinary person. The Hitlers and Stalins find murder necessary, but they don't advertise their callousness, and they don't speak of it as murder; it is 'liquidation', 'elimination', or some other soothing phrase. Mr Auden's brand of amoralism is only possible, if you are the kind of person who is always somewhere else when the trigger is pulled. So much of left-wing thought is a kind of playing with fire by people who don't even know that fire is hot.", 
+quote: "...notice the phrase 'necessary murder'. It could only be written by a person to whom murder is at most a word. The Hitlers and Stalins find murder necessary, but they don't advertise their callousness, and they don't speak of it as murder; it is 'liquidation', 'elimination', or some other soothing phrase. Mr Auden's brand of amoralism is only possible, if you are the kind of person who is always somewhere else when the trigger is pulled. So much of left-wing thought is a kind of playing with fire by people who don't even know that fire is hot.", 
 source: "George Orwell"
 }
 ,
@@ -623,17 +623,17 @@ source: "Anthony Stark, Civil War: The Confession (Earth-616)"
 ,
 {
 quote: "Until my backup battery charges, I've got nothing. I'm the Very Vincible Iron Man. ", 
-source: "Anthony Stark, Earth-616"
+source: "Anthony Stark, Iron Man"
 }
 ,
 {
 quote: "So much to do, so little RAM.", 
-source: ""
+source: "Anthony Stark, Iron Man"
 }
 ,
 {
 quote: "I take back 50% of all the bad things I ever said about you. ", 
-source: ""
+source: "Anthony Stark, Iron Man"
 }
 ,
 {
