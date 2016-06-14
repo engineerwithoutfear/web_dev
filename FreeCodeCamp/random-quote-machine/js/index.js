@@ -11,7 +11,7 @@ source: "Wesley, Netflix Daredevil"
 ,
 {
 quote: "A man without hope is a man without fear." , 
-source: "Frank Miller, 616 Darevil"
+source: "Frank Miller, Darevil (Earth-616)"
 }
 ,
 { 
