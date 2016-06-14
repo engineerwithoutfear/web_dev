@@ -617,7 +617,7 @@ source: "Steven Wittens"
 }
 ,
 {
-quote: "I knew that meant you and I would probably never speak again. Or be friends again. Or partners again. I told myself I was okay with it because I knew I was right and I knew it was saving lives. It was the right thing to do! I knew the world favors the underdog and that I would be the bad guy. I knew this. And--and even though I said I was willing to go all the way with it...I wasn't. I know this because the worst has happened. The thing I can't live with has happened. And for all our back and forth--and all the things we've said and done to each other...for all the hard questions I've had to ask, and terrible lies I've had to tell... there's one thing that I'll never be able to tell anyone now. Not my friends or my co-workers or my President... the one thing!! The one thing I should have told you. But now I can't... <br><br>It wasn't worth it. ", 
+quote: "I knew that meant you and I would probably never speak again. Or be friends again. Or partners again. I told myself I was okay with it because I knew I was right and I knew it was saving lives. [But now] the worst thing...the thing I can't live with has happened. And for all our back and forth--and all the things we've said and done to each other...for all the hard questions I've had to ask, and terrible lies I've had to tell... there's one thing that I'll never be able to tell anyone now. Not my friends or my co-workers or my President... the one thing!! The one thing I should have told you. But now I can't... <br><br>It wasn't worth it. ", 
 source: "Anthony Stark, Civil War: The Confession (Earth-616)"
 }
 ,
