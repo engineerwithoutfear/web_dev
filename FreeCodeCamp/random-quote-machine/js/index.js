@@ -704,19 +704,13 @@ function makeUniqueRandom() {
 function loadQuote() {
   // get random unused index
   var quoteIndex = makeUniqueRandom();
-  console.log(quoteIndex + " quote index")
-  n++;
-  console.log(n + " rounds")
-    // add quote and source to html 
-  console.log(quotes[quoteIndex].quote)
+  // add quote and source to html 
   $(".quote").html(quotes[quoteIndex].quote);
   $(".source").html(quotes[quoteIndex].source);
   // update tweet button
   var tweetURL = "https://twitter.com/intent/tweet?text=" + (quotes[quoteIndex].quote).replace(/<(?:.|\n)*?>/gm, '') +
     "&hashtags=" + (quotes[quoteIndex].source).replace(/ /g, "");
-
   $(".tweetURL").attr("href", tweetURL);
-  console.log("tweetURL")
 
 }
 
@@ -727,10 +721,9 @@ function zoominQuote() {
   });
   loadQuote();
 }
-var n = 0;
+
 var uniqueRandoms = [];
 var numRandoms = quotes.length;
-console.log(numRandoms + " num randoms")
 
 //on page load
 loadQuote();
