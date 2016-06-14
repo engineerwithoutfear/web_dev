@@ -71,6 +71,9 @@
   .tooltip {
     font-size: 1.5em;
   }
+  .island {
+      min-width: 60%;
+    }
   
   @media screen and (max-width: 799px) {
     .island,
