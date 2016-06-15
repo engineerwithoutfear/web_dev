@@ -14,7 +14,7 @@ quote: "You could tell a lot about a person from their fridge magnets, not that 
 source: "Margaret Atwood, Oryx and Crake"
 }
 ,
-quote: '"Change can be accommodated by any system depending on its rate, Crake used to say. Touch your head to a wall, nothing happens, but if the same head hits the wall at ninety miles an hour, it\'s red paint. We\'re in a speed tunnel, Jimmy. When the water\'s moving faster than the boat, you can\'t control a thing."', 
+quote: "Change can be accommodated by any system depending on its rate, Crake used to say. Touch your head to a wall, nothing happens, but if the same head hits the wall at ninety miles an hour, it's red paint. We're in a speed tunnel, Jimmy. When the water's moving faster than the boat, you can't control a thing.", 
 source: "Margaret Atwood, Oryx and Crake"
 }
 ,
