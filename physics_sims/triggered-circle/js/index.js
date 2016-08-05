@@ -4,20 +4,24 @@ var canvasWidth = 900;
 // set angle
 var theta = 0;
 // bigger dtheta = faster animation
-var dtheta = 0.01;
+var dtheta = -0.01;
 //set radius and amplitude
-var amp = 150;
-// other minor bits and pieces
+var amp = 100;
+var freq = 5;
+var t = 0;
 var yvalues = [];
 var toggleSpotsButton, showSpots;
 var toggleWavesButton, showWaves;
 var resolution = 1;
+var resDiv = 1;
+var alignX = 10;
+var alignY = 25;
 
 // setup the stuffs
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
   createToggles();
-  frameRate(60);
+  spawnSliders();
 }
 
 // constantly redrawing all the things
@@ -25,13 +29,13 @@ function draw() {
   clear();
   //make end of lines not blocky
   strokeCap(ROUND);
-
   //circle business
+  push();
   // center the canvas, a lil off to the left
-  translate(canvasWidth / 3, canvasHeight / 3);
+  translate(canvasWidth / 2, canvasHeight / 3);
   // get x and y coords for point on circle at angle theta
-  var x = amp * cos(theta);
-  var y = amp * sin(theta);
+  var x = amp * cos(freq * t + theta);
+  var y = amp * sin(freq * t + theta);
 
   // draw the full circle
   drawCircle(amp);
@@ -42,51 +46,56 @@ function draw() {
   // draw the orbiting point
   drawOrbital(x, y);
   // draw the sine/cos waves off to the side
-  if (showWaves == true) {
+  if (showSine == true) {
     calcSineWave();
     renderSineWave();
-    calcCosWave()
-    renderCosWave()
+    drawSineSpot(y, amp);
   }
-  // draw the external spots that trace the sin/cos
-  if (showSpots == true) {
-    drawSpots(x, y, amp);
+  if (showCos == true) {
+    calcCosWave();
+    renderCosWave();
+    drawCosSpot(x, amp);
   }
+  pop();
+
   //keep yvalues from becoming too long
-  if (yvalues.length < (TWO_PI/dtheta)) {
-    console.log(TWO_PI/dtheta)
-    //update yvalues
+  if (yvalues.length < Math.abs(TWO_PI / dtheta)) {
+    console.log(TWO_PI / dtheta)
+      //update yvalues
     yvalues.push(y);
   }
   // increment the angle and time
   theta += dtheta;
+  t += .001;
+
+  updateSettings(x, y);
 }
 
-function toggleSpots() {
-  if (showSpots) {
-    showSpots = false;
+function toggleSine() {
+  if (showSine) {
+    showSine = false;
   } else {
-    showSpots = true;
+    showSine = true;
   }
 }
 
-function toggleWaves() {
-  if (showWaves) {
-    showWaves = false;
+function toggleCos() {
+  if (showCos) {
+    showCos = false;
   } else {
-    showWaves = true;
+    showCos = true;
   }
 }
 
 function createToggles() {
-  showSpots = true;
-  toggleSpotsButton = createButton('hide ur spots');
-  toggleSpotsButton.position(25, 25);
-  toggleSpotsButton.mousePressed(toggleSpots);
-  showWaves = true;
-  toggleWavesButton = createButton('hide ur waves');
-  toggleWavesButton.position(25, 50);
-  toggleWavesButton.mousePressed(toggleWaves);
+  showSine = true;
+  toggleSpotsButton = createButton('toggle    sine');
+  toggleSpotsButton.position(alignX * 2, alignY);
+  toggleSpotsButton.mousePressed(toggleSine);
+  showCos = true;
+  toggleWavesButton = createButton('toggle cosine');
+  toggleWavesButton.position(alignX * 2, alignY * 2);
+  toggleWavesButton.mousePressed(toggleCos);
 }
 
 function drawAxes() {
@@ -124,7 +133,7 @@ function drawDecomp(x, y) {
 }
 
 function calcSineWave() {
-  var ang = theta;
+  var ang = (freq * t + theta);
   for (var i = 0; i < yvalues.length; i++) {
     yvalues[i] = Math.sin(ang) * amp;
     ang += dtheta;
@@ -132,7 +141,7 @@ function calcSineWave() {
 }
 
 function calcCosWave() {
-  var ang = theta;
+  var ang = (freq * t + theta);
   for (var i = 0; i < yvalues.length; i++) {
     yvalues[i] = Math.cos(ang) * amp;
     ang += dtheta;
@@ -146,7 +155,7 @@ function renderSineWave() {
   stroke('green');
   beginShape();
   for (var x = 0; x < yvalues.length; x += 1) {
-    curveVertex(x * resolution, yvalues[x]);
+    curveVertex(x * resolution / resDiv, yvalues[x]);
   }
   endShape();
   pop();
@@ -159,23 +168,57 @@ function renderCosWave() {
   stroke('blue');
   beginShape();
   for (var x = 0; x < yvalues.length; x += 1) {
-    curveVertex(yvalues[x], x * resolution);
+    curveVertex(yvalues[x], x * resolution / resDiv);
   }
   endShape();
   pop();
 }
 
-function drawSpots(x, y, amp) {
+function drawSineSpot(y, amp) {
   // draw sine-spot
   push();
   strokeWeight(6);
   stroke('green');
   point(amp, y);
   pop();
+}
+
+function drawCosSpot(x, amp) {
   //draw cos-spot
   push();
   strokeWeight(6);
   stroke('blue');
   point(x, amp);
   pop();
+}
+
+function spawnSliders() {
+  push();
+  ampSlider = createSlider(0, 200, amp);
+  freqSlider = createSlider(0, 100, freq);
+  //resolutionSlider = createSlider(1, 10, resolution);
+  ampSlider.position(alignX, alignY * 13);
+  freqSlider.position(alignX, alignY * 15);
+  //resolutionSlider.position(alignX, alignY * 16);
+  pop();
+}
+
+function updateSettings(x, y) {
+  amp = ampSlider.value();
+  freq = -freqSlider.value();
+  //resolution = resolutionSlider.value();
+  yOffset = -15;
+  push();
+  stroke('purple');
+  text("amplitude: " + amp, alignX, alignY * 13 + yOffset);
+  pop();
+  push();
+  stroke('orange');
+  text("frequency: " + Math.abs(freq), alignX, alignY * 15 + yOffset);
+  pop();
+  //text("resolution", alignX, alignY * 16 + yOffset);
+  text("y(t) = amplitude * [sin(frequency*t + theta)]", alignX, alignY * 18 + yOffset);
+  console.log(amp)
+  text(y.toFixed(2) * -1 + " = " + amp.toFixed(3) + " * [sin(" + freq.toFixed(3) * -1 + "*" + t.toFixed(3) + "+" + theta.toFixed(2) * -1 + ")]", alignX, alignY * 19 + yOffset);
+
 }
