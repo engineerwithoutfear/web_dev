@@ -8,4 +8,12 @@ A collection of web development projects created while learning <A HREF="http://
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/random-quote-machine/index.html">Random Quote Machine</a>
 
+Physics and Math Simulations
+
+<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/triggered-circle/index.htm">The Origin of Sine and Cosine</a>
+
+
+<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/visualizing-averages/index.html">Visualizing the Average of Two Numbers</a>
+
+
 
