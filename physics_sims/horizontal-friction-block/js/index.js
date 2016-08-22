@@ -18,7 +18,7 @@ var pushY = 0;
 // spacing for drawn text
 var offset = 10;
 // initial placement of block
-var x = 0;
+var x = (blockWidth + 10) * distanceScalingFactor;
 var y = 0;
 // friction business
 var cofKinetic = .4;
