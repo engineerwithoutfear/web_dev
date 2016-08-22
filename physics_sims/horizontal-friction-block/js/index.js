@@ -160,7 +160,7 @@ function spawnButtons() {
 };
 
 function spawnSliders() {
-  blockMassSlider = createSlider(0, 100, blockMass);
+  blockMassSlider = createSlider(1, 100, blockMass);
   blockMassSlider.position(20, 20 * 5);
   blockPushSlider = createSlider(0, 400, pushX);
   blockPushSlider.position(20, 20 * 7);
