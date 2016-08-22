@@ -1,5 +1,5 @@
-// set dimensions 
-var canvasHeight = 500;
+// set canvas dimensions 
+var canvasHeight = 600;
 var canvasWidth = 600;
 // set default min, max, average, rectWidth, etc
 var theMin = 100;
@@ -7,10 +7,17 @@ var theMax = 300;
 var theAverage = (theMax + theMin) / 2;
 var rectWidths = 100;
 var fontSize = 15;
-var textOffset = rectWidths / 3;
+var textOffsetX = rectWidths / 2;
+var textOffsetY = 10;
+// horizontal alignment of sliders
+var sliderAlignment = canvasWidth / 2 + 50;
+// vertical distance between sliders
+var interdistanceY = -50;
 
 function setup() {
-  createCanvas(canvasWidth, canvasHeight);
+  canvas = createCanvas(canvasWidth, canvasHeight);
+  canvas.parent('sketch-holder');
+  
   // create sliders and set default fontsize
   spawnSliders();
   textSize(fontSize);
@@ -18,7 +25,8 @@ function setup() {
 
 function draw() {
   clear();
-  translate(10, canvasHeight);
+  //scoot the origin to the bottom of the canvas
+  translate(20, canvasHeight);
   // update values
   updateBars();
   //flip the bars so they grow bottom to top
@@ -54,24 +62,17 @@ function Bar(x, y, color) {
   this.y = y;
   this.color = color;
 }
-// vertical distance between sliders
-var interdistanceY = -50;
-// horizontal alignment of sliders
-var sliderAlignment = canvasWidth / 2 + 50;
 
-//var distFromSlide = sliderAligment;
-//var distFromTop = 0;
+
 function spawnSliders() {
   push();
-  translate(10, canvasHeight);
-  scale(1, -1);
   minSlider = createSlider(0, 450, theMin);
-
   maxSlider = createSlider(0, 450, theMax);
-  maxSlider.position(sliderAlignment + 100, canvasHeight + interdistanceY * 2);
+  minSlider.parent('sketch-holder');
+  maxSlider.parent('sketch-holder');
   minSlider.position(sliderAlignment + 100, canvasHeight + interdistanceY * 3);
+  maxSlider.position(sliderAlignment + 100, canvasHeight + interdistanceY * 2);
   pop();
-
 }
 
 function labelSliders() {
@@ -79,20 +80,18 @@ function labelSliders() {
   //de flip so the text isn't upside down
   scale(1, -1);
   fill(rectSmall.color);
-  text("min: " + theMin, sliderAlignment, interdistanceY * 3 + 10);
+  text("min: " + theMin, sliderAlignment, interdistanceY * 3 + 17);
   fill(rectLarge.color);
-  text("max: " + theMax, sliderAlignment, interdistanceY * 2 + 10);
+  text("max: " + theMax, sliderAlignment, interdistanceY * 2 + 17);
   fill(rectAverage.color);
-  text("average: (" + theMin + "+" + theMax + ")/2 = " + theAverage, sliderAlignment, interdistanceY + 10);
+  text("average: (" + theMin + "+" + theMax + ")/2 = " + theAverage, sliderAlignment, interdistanceY + 17);
   pop();
 }
 
 function updateBars() {
-
   offset = 0;
   theMin = minSlider.value();
   theMax = maxSlider.value();
-
   theAverage = (theMax + theMin) / 2;
   rectSmall = new Bar(rectWidths, theMin, 'blue');
   rectLarge = new Bar(rectWidths, theMax, 'red');
@@ -108,7 +107,8 @@ function labelSmall() {
   push();
   scale(1, -1);
   fill('black');
-  text("min", offset + textOffset, -(rectSmall.y + textOffset));
+  textAlign(CENTER);
+  text("min", offset + textOffsetX, -(rectSmall.y + textOffsetY));
   pop();
 }
 
@@ -116,10 +116,10 @@ function labelAverage() {
   push();
   scale(1, -1);
   fill('black');
-  rectMode(CENTER);
-  text("   (min + max)", offset, -(rectAverage.y + textOffset));
-  text("   _________", offset, -(rectAverage.y + textOffset * .8));
-  text("            2", offset, -(rectAverage.y + textOffset * .2));
+  textAlign(CENTER);
+  text("(min + max)", offset + textOffsetX, -(rectAverage.y + textOffsetY * 4));
+  text("_________",  offset + textOffsetX, -(rectAverage.y + textOffsetY * 3));
+  text("2",  offset + textOffsetX, -(rectAverage.y + textOffsetY * 1));
   pop();
 }
 
@@ -137,6 +137,7 @@ function labelLarge() {
   push();
   scale(1, -1);
   fill('black');
-  text("max", offset + textOffset, -(rectLarge.y + textOffset));
+  textAlign(CENTER);
+  text("max", offset + textOffsetX, -(rectLarge.y + textOffsetY));
   pop();
 }

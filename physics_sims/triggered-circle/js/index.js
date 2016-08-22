@@ -1,51 +1,57 @@
-// set dimensions 
+// set dimensions
 var canvasHeight = 600;
 var canvasWidth = 900;
-// set angle
-var theta = 0;
-// bigger dtheta = faster animation
-var dtheta = -0.01;
-//set radius and amplitude
-var amp = 100;
-var freq = 5;
+// line widths scale off this base unit
+var lineW = 2;
+// set initial time and angle
 var t = 0;
-var yvalues = [];
+// time increment
+var dt = .001;
+//set initial radius/amplitude and frequency
+var amp = 100;
+var freq = 10;
+// permits these vars to be accessed by all functions
+var x, y;
+var timeStopped, oldFreq;
 var toggleSpotsButton, showSpots;
 var toggleWavesButton, showWaves;
-var resolution = 1;
-var resDiv = 1;
+// for graphing the waves
+var res = 45;
+var noOfPoints = 90;
+var xx = new Array(noOfPoints);
+var yy = new Array(noOfPoints);
+// text alignment business
 var alignX = 10;
 var alignY = 25;
 
 // setup the stuffs
 function setup() {
-  createCanvas(canvasWidth, canvasHeight);
+  canvas = createCanvas(canvasWidth, canvasHeight);  
   createToggles();
   spawnSliders();
 }
 
+
 // constantly redrawing all the things
 function draw() {
-  clear();
+  background(255);
   //make end of lines not blocky
   strokeCap(ROUND);
   //circle business
   push();
-  // center the canvas, a lil off to the left
-  translate(canvasWidth / 2, canvasHeight / 3);
-  // get x and y coords for point on circle at angle theta
-  var x = amp * cos(freq * t + theta);
-  var y = amp * sin(freq * t + theta);
-
+  // center the unit circle
+  translate(width / 2, height / 3);
+  // get x and y coords for point on circle at a given time
+  x = amp * cos(freq * t);
+  y = amp * sin(freq * t);
   // draw the full circle
   drawCircle(amp);
   // draw the axes
   drawAxes();
-  // decompose and draw the cos and sin lines + hypotenuse inside the circle
+  // decompose and draw the cos and sin lines + orbiting hypotenuse inside the circle
   drawDecomp(x, y);
-  // draw the orbiting point
-  drawOrbital(x, y);
-  // draw the sine/cos waves off to the side
+  // calc and render the sine and cosine waves if requested
+  strokeWeight(lineW-1);
   if (showSine == true) {
     calcSineWave();
     renderSineWave();
@@ -57,18 +63,144 @@ function draw() {
     drawCosSpot(x, amp);
   }
   pop();
-
-  //keep yvalues from becoming too long
-  if (yvalues.length < Math.abs(TWO_PI / dtheta)) {
-    console.log(TWO_PI / dtheta)
-      //update yvalues
-    yvalues.push(y);
-  }
   // increment the angle and time
-  theta += dtheta;
-  t += .001;
-
+  t += dt;
   updateSettings(x, y);
+}
+
+function drawCircle(amp) {
+  noFill();
+  fill(235);
+  stroke('black');
+  strokeWeight(1);
+  ellipse(0, 0, amp * 2);
+}
+
+function drawAxes() {
+  stroke('black');
+  strokeWeight(1);
+  line(0, height * 2, 0, -height * 2);
+  line(width * 2, 0, -width * 2, 0);
+}
+
+function drawDecomp(x, y) {
+  //cos
+  if (showCos == true) {
+    strokeWeight(lineW-1);
+    stroke('blue');
+    line(0, y, x, y);
+  }
+  // sine
+  if (showSine == true) {
+    stroke('green');
+    line(x, 0, x, y);
+  }
+  drawOrbital();
+}
+
+function drawOrbital(x, y) {
+  push();
+  fill('purple');
+  stroke('purple');
+  strokeWeight(lineW+2);
+  rotate(t * freq);
+  line(0, 0, amp, 0);
+  translate(amp, 0);
+  ellipse(0, 0, 10, 10);
+  pop();
+}
+function calcSineWave() {
+  for (i=0;i<(2+noOfPoints);i++){
+    xx[i] = i*5;
+    yy[i] = amp*Math.sin(xx[i]/res+freq*t);
+  }
+}
+
+function calcCosWave() {
+  for (i=0;i<(2+noOfPoints);i++){
+    xx[i] = i*5;
+    yy[i] = amp*Math.cos(xx[i]/res+freq*t);
+  }
+}
+
+function renderSineWave() {
+  push();
+  translate(amp, 1);
+  noFill();
+  stroke('green');
+  beginShape();
+  for (var i = -1; i< (2+noOfPoints); i += 1) {
+    curveVertex(xx[i],yy[i]);
+  }
+  endShape();
+  pop();
+}
+
+function renderCosWave() {
+  push();
+  translate(1, amp);
+  noFill();
+  stroke('blue');
+  beginShape();
+  for (var i = -1; i< (2+noOfPoints); i += 1) {
+    curveVertex(yy[i],xx[i]);
+  }
+  endShape();
+  pop();
+}
+
+function drawSineSpot(y, amp) {
+  // draw sine-spot
+  push();
+  fill('green');  
+  ellipse(amp, y, lineW * 3);
+  pop();
+}
+
+function drawCosSpot(x, amp) {
+  //draw cos-spot
+  push();
+  fill('blue');
+  ellipse(x, amp, lineW* 3);
+  pop();
+}
+
+function updateSettings(x, y) {
+  amp = ampSlider.value();
+  freq = -freqSlider.value();
+  yOffset = -15;
+  push();
+  text("amplitude: " + amp, alignX, alignY * 13 + yOffset);
+  pop();
+  push();
+  text("frequency: " + Math.abs(freq), alignX, alignY * 15 + yOffset);
+  pop();
+  text("amplitude * sin(frequency*t) = y(t)", alignX, alignY * 18 + yOffset);
+  text(amp + " * [sin(" + freq * -1 + "*" + t.toFixed(2) + ")]"  + " = " +y.toFixed(0) * -1 , alignX, alignY * 19 + yOffset);
+}
+
+function spawnSliders() {
+  push();
+  ampSlider = createSlider(0, 200, amp);
+  freqSlider = createSlider(0, 100, freq);
+  ampSlider.position(alignX, alignY * 13);
+  freqSlider.position(alignX, alignY * 15);
+  pop();
+}
+
+function createToggles() {
+  showSine = true;
+  toggleSpotsButton = createButton('toggle    sine');
+  toggleSpotsButton.position(alignX * 2, alignY);
+  toggleSpotsButton.mousePressed(toggleSine);
+  showCos = true;
+  toggleWavesButton = createButton('toggle cosine');
+  toggleWavesButton.position(alignX * 2, alignY * 2);
+  toggleWavesButton.mousePressed(toggleCos);
+  running = true;
+  onoff = createButton('stop');
+  onoff.position(alignX * 2, alignY * 3);
+  onoff.mousePressed(turnonoff);
 }
 
 function toggleSine() {
@@ -87,138 +219,30 @@ function toggleCos() {
   }
 }
 
-function createToggles() {
-  showSine = true;
-  toggleSpotsButton = createButton('toggle    sine');
-  toggleSpotsButton.position(alignX * 2, alignY);
-  toggleSpotsButton.mousePressed(toggleSine);
-  showCos = true;
-  toggleWavesButton = createButton('toggle cosine');
-  toggleWavesButton.position(alignX * 2, alignY * 2);
-  toggleWavesButton.mousePressed(toggleCos);
+function stopEverything() {
+  dt = 0.00;
+  t = 0;
+  timeStopped = t;  
 }
 
-function drawAxes() {
-  stroke('black');
-  strokeWeight(1);
-  line(0, canvasHeight * 2, 0, -canvasHeight * 2);
-  line(canvasWidth * 2, 0, -canvasWidth * 2, 0);
+function startEverything() {
+  dt = 0.001;
 }
 
-function drawCircle(amp) {
-  noFill();
-  fill(235);
-  stroke('black');
-  ellipse(0, 0, amp * 2);
-}
-
-function drawOrbital(x, y) {
-  stroke('purple');
-  fill('purple');
-  ellipse(x, y, 10, 10);
-}
-
-function drawDecomp(x, y) {
-  // hypotenuse
-  strokeWeight(4);
-  stroke('purple');
-  line(0, 0, x, y);
-  // cosine
-  strokeWeight(1);
-  stroke('blue');
-  line(0, y, x, y);
-  // sine
-  stroke('green');
-  line(x, 0, x, y);
-}
-
-function calcSineWave() {
-  var ang = (freq * t + theta);
-  for (var i = 0; i < yvalues.length; i++) {
-    yvalues[i] = Math.sin(ang) * amp;
-    ang += dtheta;
+function turnonoff() {
+  // and of course it's nice to be able to stop it if things get crazy
+  if (!running) {
+    running = true;
+    loop();
+    onoff.html("stop");
+    return
   }
-}
 
-function calcCosWave() {
-  var ang = (freq * t + theta);
-  for (var i = 0; i < yvalues.length; i++) {
-    yvalues[i] = Math.cos(ang) * amp;
-    ang += dtheta;
+  if (running) {
+    running = false;
+    noLoop()
+    onoff.html("start");
+    return
   }
-}
-
-function renderSineWave() {
-  push();
-  translate(amp, 1);
-  noFill();
-  stroke('green');
-  beginShape();
-  for (var x = 0; x < yvalues.length; x += 1) {
-    curveVertex(x * resolution / resDiv, yvalues[x]);
-  }
-  endShape();
-  pop();
-}
-
-function renderCosWave() {
-  push();
-  translate(1, amp);
-  noFill();
-  stroke('blue');
-  beginShape();
-  for (var x = 0; x < yvalues.length; x += 1) {
-    curveVertex(yvalues[x], x * resolution / resDiv);
-  }
-  endShape();
-  pop();
-}
-
-function drawSineSpot(y, amp) {
-  // draw sine-spot
-  push();
-  strokeWeight(6);
-  stroke('green');
-  point(amp, y);
-  pop();
-}
-
-function drawCosSpot(x, amp) {
-  //draw cos-spot
-  push();
-  strokeWeight(6);
-  stroke('blue');
-  point(x, amp);
-  pop();
-}
-
-function spawnSliders() {
-  push();
-  ampSlider = createSlider(0, 200, amp);
-  freqSlider = createSlider(0, 100, freq);
-  //resolutionSlider = createSlider(1, 10, resolution);
-  ampSlider.position(alignX, alignY * 13);
-  freqSlider.position(alignX, alignY * 15);
-  //resolutionSlider.position(alignX, alignY * 16);
-  pop();
-}
-
-function updateSettings(x, y) {
-  amp = ampSlider.value();
-  freq = -freqSlider.value();
-  //resolution = resolutionSlider.value();
-  yOffset = -15;
-  push();
-  stroke('purple');
-  text("amplitude: " + amp, alignX, alignY * 13 + yOffset);
-  pop();
-  push();
-  stroke('orange');
-  text("frequency: " + Math.abs(freq), alignX, alignY * 15 + yOffset);
-  pop();
-  //text("resolution", alignX, alignY * 16 + yOffset);
-  text("y(t) = amplitude * [sin(frequency*t + theta)]", alignX, alignY * 18 + yOffset);
-  console.log(amp)
-  text(y.toFixed(2) * -1 + " = " + amp.toFixed(3) + " * [sin(" + freq.toFixed(3) * -1 + "*" + t.toFixed(3) + "+" + theta.toFixed(2) * -1 + ")]", alignX, alignY * 19 + yOffset);
 
 }
