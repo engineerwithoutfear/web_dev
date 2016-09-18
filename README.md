@@ -10,7 +10,7 @@ A collection of web development projects created while learning <A HREF="http://
 
 Physics and Math Simulations
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/triggered-circle/index.html">The Origin of Sine and Cosine</a>
+<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/origin-sine-cosine/index.html">The Origin of Sine and Cosine</a>
 
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/visualizing-averages/index.html">Visualizing the Average of Two Numbers</a>
