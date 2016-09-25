@@ -187,7 +187,7 @@ function spawnControls() {
   massSlider = createSlider(1, 100, m);
   massSlider.position(150, 450);
   shoveSlider = createSlider(0, 400, 10);
-  shoveSlider.position(250, 450);
+  shoveSlider.position(290, 450);
 }
 
 function drawForceArrows() {
