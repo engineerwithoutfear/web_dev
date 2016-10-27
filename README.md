@@ -10,6 +10,8 @@ A collection of web development projects created while learning <A HREF="http://
 
 Physics and Math Simulations
 
+<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/friction-block/index.html">Friction Block on a Ramp</a>
+
 <A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/origin-sine-cosine/index.html">The Origin of Sine and Cosine</a>
 
 
