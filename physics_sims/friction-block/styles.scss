@@ -12,7 +12,7 @@ input[type="range"]:nth-child(1)::before {
 }
 
 input[type="range"]:nth-child(2)::before {
-  content: "impulse";
+  content: "push";
   position: fixed;
   margin-top: 1.5em;
   color: black;
