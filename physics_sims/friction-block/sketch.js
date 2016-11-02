@@ -129,11 +129,8 @@ function calcNetForce() {
     } else {
       frictSign = -1;
     }
-    if (justShoved === false) {
-      netForce = createVector((shove + block.mass * g * Math.sin(thetaRadians) - frictSign * muk * block.mass * g * Math.cos(thetaRadians)), 0);
-    } else {
-      netForce = createVector((shove + block.mass * g * Math.sin(thetaRadians) - frictSign * muk * block.mass * g * Math.cos(thetaRadians)), 0);
-    }
+    netForce = createVector((shove + block.mass * g * Math.sin(thetaRadians) - frictSign * muk * block.mass * g * Math.cos(thetaRadians)), 0);
+    
   } else {
     currentMu = mus;
     frictionMode = "static";
