@@ -4,8 +4,8 @@ function setup() {
   i = 30; // initial force applied
   w = 40; // width
   h = 40; // height
-  g = 1; //gravity 
-  ra = 10; // initial ramp angle
+  g = .98; //gravity
+  ra = 0; // initial ramp angle
   clamp = 0.5;
   mus = .35;
   muk = .30;
@@ -14,7 +14,6 @@ function setup() {
   mahdiv = createDiv('');
   spawnControls();
   init();
-  // frameRate(1);
 }
 
 function draw() {
@@ -37,14 +36,13 @@ function draw() {
 }
 
 function displayStats() {
-  // unit adjustment 
+  // unit adjustment
   ua = 10;
   stats = ("type: <span class=\"nums\">" + frictionMode + "</span><br>" +
     "mu: <span class=\"nums\">" + currentMu.toFixed(2) + "</span><br>" +
     "distance: <span class=\"nums\">" + (block.distance / (ua)).toFixed(1) + " m</span><br>" +   "velocity: <span class=\"nums\">" + (block.velocity.x).toFixed(1) + " m/s </span><br>" +
     "mass: <span class=\"nums\">" + block.mass + " kg</span><br>push: <span class=\"nums\">" + shoveSlider.value() + " N</span><br>" +
-    "angle: <span class=\"nums\">" + rampSlider.value().toFixed(1) + " &theta;</span><br>" +
-    "time: <span class=\"nums\">" + (t / ua).toFixed(1) + " s</span>");
+    "angle: <span class=\"nums\">" + rampSlider.value().toFixed(1) + " &theta;</span><br>");
   mahdiv.html(stats);
   mahdiv.parent('stats-holder');
 }
@@ -91,7 +89,6 @@ function init() {
   moving = false;
   justShoved = false;
   currentMu = mus;
-  t = 0;
 }
 
 function calcNetForce() {
@@ -110,17 +107,14 @@ function calcNetForce() {
     if (Math.abs(shove) > fstaticMax) {
       moving = true;
       justShoved = true;
-      t = 0;
     }
     // check if block begins to slide from gravity      
     else if (Math.tan(thetaRadians) > mus) {
       moving = true;
-      t = 0;
     }
   }
   // if the block is moving, apply kinetic friction
   if (moving === true) {
-    t += 1;
     currentMu = muk;
     frictionMode = "kinetic";
     // adjust friction to oppose direction of movement
@@ -129,15 +123,22 @@ function calcNetForce() {
     } else {
       frictSign = -1;
     }
-    netForce = createVector((shove + block.mass * g * Math.sin(thetaRadians) - frictSign * muk * block.mass * g * Math.cos(thetaRadians)), 0);
-    
-  } else {
+    // if it wasn't just shoved, include friction
+    if (justShoved === false) {
+      netForce = createVector((shove + block.mass * g * Math.sin(thetaRadians) - frictSign * muk * block.mass * g * Math.cos(thetaRadians)), 0);
+    } 
+    // else, leave out the friction
+    else {
+      netForce = createVector((shove + block.mass * g * Math.sin(thetaRadians)), 0);
+    }
+  }
+  else {
     currentMu = mus;
     frictionMode = "static";
     netForce = createVector(0, 0);
   }
   // keep the block from sliding backwards from friction when halted
-  if (Math.abs(block.velocity.x) < clamp) {
+  if (Math.abs(block.velocity.x) < clamp && justShoved === false) {
     moving = false;
     currentMu = mus;
     frictionMode = "static";
