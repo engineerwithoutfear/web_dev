@@ -168,8 +168,8 @@ function drawCosSpot(x, amp) {
 function updateSettings(x, y) {
   amp = ampSlider.value();
   freq = -freqSlider.value();
-  text("AMPLITUDE: " + amp, alignX, windowHeight - alignY * 14);
-  text("FREQUENCY: " + Math.abs(freq), alignX, windowHeight - alignY * 8);
+  text("AMPLITUDE: " + amp, alignX, windowHeight - alignY * 12);
+  text("FREQUENCY: " + Math.abs(freq), alignX, windowHeight - alignY * 6);
   text("y(t) = amplitude * sin(frequency*t)\n\n" + (y.toFixed(0) * -1), windowWidth - 250, alignY * 3);
   push();
   textAlign(LEFT);
@@ -182,8 +182,8 @@ function spawnSliders() {
   push();
   ampSlider = createSlider(0, 200, amp);
   freqSlider = createSlider(0, 100, freq);
-  ampSlider.position(alignX, windowHeight - alignY * 14);
-  freqSlider.position(alignX, windowHeight - alignY * 8);
+  ampSlider.position(alignX, windowHeight - alignY * 12);
+  freqSlider.position(alignX, windowHeight - alignY * 6);
   freqSlider.mousePressed(turnonoff2);
   freqSlider.mouseReleased(turnonoff2);
   ampSlider.parent('sketch-holder');
@@ -266,12 +266,10 @@ function turnonoff2() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  ampSlider.position(alignX, windowHeight - alignY * 14);
-  freqSlider.position(alignX, windowHeight - alignY * 8);
-  toggleSineButton.position(alignX, alignY * 1);
-
-  toggleCosineButton.position(alignX, alignY * 5);
-
-  onoff.position(alignX, alignY * 9);
+  ampSlider.position(alignX, windowHeight - alignY * 12);
+  freqSlider.position(alignX, windowHeight - alignY * 6);
+  //toggleSineButton.position(alignX, alignY * 1);
+  //toggleCosineButton.position(alignX, alignY * 5);
+  //onoff.position(alignX, alignY * 9);
   updateSettings();
 }
