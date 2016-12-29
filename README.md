@@ -8,6 +8,10 @@ A collection of web development projects created while learning <A HREF="http://
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/random-quote-machine/index.html">Random Quote Machine</a>
 
+<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/wikipedia-viewer/index.html">Wikipedia Viewer</a>
+
+<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/galactic-translator-react/index.html">Galactic Translator (w/React.js)</a>
+
 Physics and Math Simulations
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/friction-block/index.html">Friction Block on a Ramp</a>

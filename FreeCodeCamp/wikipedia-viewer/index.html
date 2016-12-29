@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>FCC - Wikipedia Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      html,
+body {
+  color: white;
+  font-family: "'Open Sans', sans-serif";
+  font-size: 16px;
+}
+
+input {
+  border-style: solid;
+}
+
+#landing-page,
+.results-page {
+  max-height: 70%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#landing-page:hover,
+.results-page:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.results-page {
+  max-width: 80%;
+}
+
+.container-fluid {
+  padding: 0;
+  width: 75%;
+}
+
+#search-commence1 {
+  padding: 1rem;
+}
+
+#headline {
+  padding: 1rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+#landing-page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 3rem;
+}
+
+.island__search-box1 {
+  font-size: 2rem;
+}
+
+#search-input1,
+#search-input {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#search-input1:focus,
+#search-input:focus, #search-input:hover, #search-input1:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+input,
+button, #search-random,
+#search-input,
+#search-button,
+#search-commence2,
+#island__search-box-text {
+  color: white;
+  background-color: transparent;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-container {
+  display: flex;
+}
+
+.nav-item {
+  font-size: 1.5em;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.island__search-box {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+nav {
+  border: none;
+}
+
+.nav-item {
+  flex-grow: 1;
+  min-width: 33.3%;
+}
+
+nav,
+#search-commence1,
+#search-input1,
+#search-random,
+#search-input,
+#search-button,
+#search-commence2,
+#island__search-box-text {
+  width: 100%;
+}
+
+.island__row {
+  padding: 2rem;
+  margin-top: .5rem;
+}
+
+.island__row:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1.05) translate3d(3%, 0, 0);
+  cursor: pointer;
+}
+
+[class^="results__"] {
+  display: inline-block;
+}
+
+[class^="results__"]:first-letter {
+  text-transform: capitalize;
+}
+
+.results__page-title {
+  text-transform: uppercase;
+  color: #bf2fcb;
+  font-family: "'Nunito', sans-serif;";
+}
+
+.results__summary {
+  display: block;
+  margin-left: 5%;
+}
+
+.results__word-count,
+.results__timestamp,
+.results__size {
+  float: right;
+}
+
+.hide-it {
+  display: none;
+}
+
+/* Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+:root {
+  font-size: 8px;
+}
+
+@media (min-width: 400px) and (max-width: 800px) {
+  :root {
+    font-size: calc( 8px + (16 - 8) * ( (100vw - 400px) / ( 800 - 400)));
+  }
+}
+@media (min-width: 800px) {
+  :root {
+    font-size: 16px;
+  }
+}
+#earth-bg {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?dpr=1.5&auto=format&crop=entropy&fit=crop&w=1500&h=998&q=80&cs=tinysrgb");
+  background-size: cover;
+  z-index: -99;
+}
+
+.border-effects {
+  border: blue 1px solid;
+  border-radius: 5px;
+  border-left: 2px solid #3dade9;
+  border-right: 2px solid #bf2fcb;
+  background-image: -webkit-linear-gradient(left, #3dade9, #bf2fcb), -webkit-linear-gradient(left, #3dade9, #bf2fcb);
+  background-size: 100% 2px;
+  background-position: 0 100%, 0 0;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+}
+
+a, a:hover, a:link {
+  color: inherit;
+  text-decoration: none;
+}
+
+    </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+  <div id ="earth-bg"></div><div class="container-fluid border-effects" id="landing-page">
+  <div id="headline">
+    WIKIPEDIA VIEWER
+  </div>
+  <div class="island__search-box1">
+    <input type="search" id="search-input1" value=" cats" placeholder= "  " autofocus>
+    <button id="search-commence1"><i class="fa fa-search"></i></button> </div>
+  </ div>
+</div>
+
+<nav class="hide-it border-effects"> 
+  <div class="island__search-box border-effects-bottom nav-container">
+ <div class = "nav-item ">
+    <A HREF="https://en.wikipedia.org/wiki/Special:Random"> <button id="search-random">SURPRISE ME</button></a>
+    </div>
+    <div class = "nav-item"><input type="search" id="search-input" value="    cats" placeholder="  Input your text here." autofocus>   </div>
+    <div class = "nav-item"> <button id="search-commence2">
+    <i class="fa fa-search"></i></button>
+      </div>
+    </ div>
+  </div>
+</nav>
+<div class="container-fluid results-page hide-it">
+  <div class="island">
+    <div class="island__results-box" id="island__results-box">
+    </div>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js'></script>
+<script src='http://velocityjs.org/build/velocity.ui.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

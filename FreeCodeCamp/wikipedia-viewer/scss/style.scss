@@ -1,0 +1,224 @@
+$charcoal: #111; // button and input text color
+$big-font: "'Nunito', sans-serif;";
+$font-color-alt: #bf2fcb;
+$normal-font: "'Open Sans', sans-serif";
+$dark-bg-opacity: .2;
+$earth-bg-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?dpr=1.5&auto=format&crop=entropy&fit=crop&w=1500&h=998&q=80&cs=tinysrgb");
+html,
+body {
+  color: white;
+  font-family: $normal-font;
+  font-size: 16px;
+}
+input { border-style:solid; }
+#landing-page,
+.results-page {
+  max-height: 70%;  
+   background-color: rgba(black, $dark-bg-opacity);  
+}
+#landing-page:hover,
+.results-page:hover,
+{
+  background-color: rgba(black, $dark-bg-opacity + .2);
+}
+
+.results-page {
+  max-width: 80%;
+}
+
+.container-fluid {
+  padding: 0;
+ width: 75%;
+}
+
+#search-commence1 {
+  padding: 1rem;
+}
+
+#headline {
+  padding: 1rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+// landing page
+#landing-page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 3rem;
+}
+
+.island__search-box1 {
+  font-size: 2rem;
+}
+
+#search-input1,
+#search-input {
+  background-color: rgba(black, $dark-bg-opacity + .2);  
+}
+
+#search-input1:focus,
+#search-input:focus, #search-input:hover, #search-input1:hover {
+  background-color: rgba(white, .1);
+}
+
+input,
+button, #search-random,
+#search-input,
+#search-button,
+#search-commence2,
+#island__search-box-text {
+  color: white;
+  background-color: transparent;
+    border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-container {
+  display: flex;
+}
+
+.nav-item {
+  font-size: 1.5em;
+//  border-bottom: 1px solid white;
+}
+
+.nav-item:hover {
+  background-color: rgba(white, .2);
+}
+
+.island__search-box {
+  display: flex;
+  flex-flow: row wrap;
+}
+nav {border:none;}
+.nav-item {
+  flex-grow: 1;
+  min-width: 33.3%;
+  //box-shadow: 2px 2px 2px 2px rgba(white, .1); 
+}
+
+nav,
+#search-commence1,
+#search-input1,
+#search-random,
+#search-input,
+#search-button,
+#search-commence2,
+#island__search-box-text {
+  width: 100%;
+}
+
+// results
+.island__row {
+  padding: 2rem;
+  margin-top: .5rem;
+}
+
+.island__row:hover {
+  background-color: rgba(black, $dark-bg-opacity + .3);
+  transform: scale(1.05) translate3d(3%, 0, 0);
+  cursor: pointer;
+}
+
+[class^="results__"] {
+  display: inline-block;
+}
+
+[class^="results__"]:first-letter {
+  text-transform: capitalize;
+}
+
+.results__page-title {
+  text-transform: uppercase;
+  color: $font-color-alt;
+  font-family: $big-font;
+  
+}
+
+
+.results__summary {
+  display: block;
+  margin-left: 5%;
+}
+
+.results__word-count,
+.results__timestamp,
+.results__size {
+  float: right;
+}
+
+// transition classes
+.hide-it {
+  display: none;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {}
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {}
+
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {}
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {}
+
+// auto text resizing
+// These values are the minimum and maximum viewport sizes to apply the font scaling
+$min_width: 400;
+$max_width: 800;
+$min_font: 8;
+$max_font: 16;
+:root {
+  font-size: #{$min_font}px;
+}
+
+@media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+  :root {
+    font-size: calc( #{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_width}px) / ( #{$max_width} - #{$min_width})));
+  }
+}
+
+@media (min-width: #{$max_width}px) {
+  :root {
+    font-size: #{$max_font}px;
+  }
+}
+
+// background
+#earth-bg {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: $earth-bg-image;
+  background-size: cover;
+  z-index: -99;
+}
+
+.border-effects {
+  //box-sizing: border-box;
+  border: blue 1px solid;
+  border-radius: 5px;
+  border-left: 2px solid #3dade9;
+  border-right: 2px solid #bf2fcb;
+  background-image: -webkit-linear-gradient(left, #3dade9, #bf2fcb), -webkit-linear-gradient(left, #3dade9, #bf2fcb);
+  background-size: 100% 2px;
+  background-position: 0 100%, 0 0;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+}
+a, a:hover, a:link  {
+  color: inherit;
+  text-decoration: none;
+}
