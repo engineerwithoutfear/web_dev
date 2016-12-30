@@ -51,7 +51,7 @@ var App = React.createClass({
         React.createElement(
           "div",
           { className: "markdown" },
-          React.createElement("textarea", { placeholder: this.state.placeholderMarkdown, onChange: this.updateState, value: this.state.text })
+          React.createElement("textarea", { placeholder: this.state.placeholderMarkdown, onChange: this.updateState,  value: this.state.text, autoFocus: true})
         ),
         React.createElement(
           "div",
