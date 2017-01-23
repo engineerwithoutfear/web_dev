@@ -30,5 +30,9 @@
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/visualizing-averages/index.html">Visualizing the Average of Two Numbers</a>
 
+#Javascript30
+##Highlights from a <a href="https://javascript30.com/">30 day long vanilla JS coding challenge</a>.
+
+<A href="https://codepen.io/engineerwithoutfear/pen/xgRRVv">Drum Kit</a>
 
 
