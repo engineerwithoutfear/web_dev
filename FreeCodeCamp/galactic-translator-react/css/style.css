@@ -109,7 +109,7 @@ textarea, p {
 
 @font-face {
   font-family: "Vulcan";
-  src: url(http://engineerwithoutfear.com/fonts/star-trek/Vulcan_Script_best.ttf) format("truetype");
+  src: url(Vulcan_Script_best.ttf) format("truetype");
 }
 .preview {
   font-family: "Vulcan";
