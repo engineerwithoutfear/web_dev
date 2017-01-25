@@ -4,7 +4,7 @@
 
 ###Front End
 
-<!--<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/galactic-translator-react/index.html">Galactic Translator (w/React.js)</a>-->
+<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/galactic-translator-react/index.html">Galactic Translator (w/React.js)</a>
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/wikipedia-viewer/index.html">Wikipedia Viewer</a>
 
