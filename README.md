@@ -22,7 +22,9 @@
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/weather-report/index.html">Weather App</a>
 
-<A href="https://codepen.io/engineerwithoutfear/pen/xgRRVv">Drum Kit</a>
+<A href="http://engineerwithoutfear.github.io/web_dev/Javascript30/drumset/index.html">Drumset</a>
+
+<A href="http://engineerwithoutfear.github.io/web_dev/Javascript30/clock/index.html">Analog Clock</a>
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/portfolio-page/index.html">Personal Portfolio Page</a>
 
