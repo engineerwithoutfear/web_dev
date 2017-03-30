@@ -2,8 +2,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   m = 3; // mass of block
   i = 30; // initial force applied
-  w = 40; // width
-  h = 40; // height
+  	calcBlockDimensions();
   g = .98; //gravity
   ra = 0; // initial ramp angle
   clamp = 0.5;
@@ -40,7 +39,7 @@ function displayStats() {
   ua = 10;
   stats = ("type: <span class=\"nums\">" + frictionMode + "</span><br>" +
     "mu: <span class=\"nums\">" + currentMu.toFixed(2) + "</span><br>" +
-    "distance: <span class=\"nums\">" + (block.distance / (ua)).toFixed(1) + " m</span><br>" +   "velocity: <span class=\"nums\">" + (block.velocity.x).toFixed(1) + " m/s </span><br>" +
+    // "distance: <span class=\"nums\">" + (block.distance / (ua)).toFixed(1) + " m</span><br>" +   "velocity: <span class=\"nums\">" + (block.velocity.x).toFixed(1) + " m/s </span><br>" +
     "mass: <span class=\"nums\">" + block.mass + " kg</span><br>push: <span class=\"nums\">" + shoveSlider.value() + " N</span><br>" +
     "angle: <span class=\"nums\">" + rampSlider.value().toFixed(1) + " &theta;</span><br>");
   mahdiv.html(stats);
@@ -69,6 +68,13 @@ function spawnControls() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+	calcBlockDimensions();
+}
+
+function calcBlockDimensions(){
+	  blockDimensions = Math.sqrt(windowWidth + windowHeight) * 2
+  w = blockDimensions; // width
+  h = blockDimensions; // height
 }
 
 function shoveButton() {
@@ -175,7 +181,7 @@ var KineticMass = function(position, velocity, acceleration, mass, kmFill, scali
   this.display = function() {
     fill(this.color);
     stroke(this.outline);
-    rect(this.position.x, this.position.y - h, w, h);
+    rect(this.position.x - w/2, this.position.y - h, w, h);
   };
   this.giveItAnAcceleration = function(accel) {
     this.acceleration = (accel);
