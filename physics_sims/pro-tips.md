@@ -16,6 +16,7 @@
   
   Buttons can be declared in HTML, but as we will be working in Javascript to create our p5 sketch, I have chosen to initialize them all in one place in our Javascript. 
   
+  # Creating Elements
 
 # Buttons
 
@@ -50,6 +51,8 @@ These buttons will all live in the button-holder div. The position for all the b
 ```
 The #button-holder > * targets all child elements inside the button-holder div and displays them in a block format (vertical stack). We can also set the space between the buttons with margin. Since this button collection rests on the bottom corner of the page, I have set the margin-top to 20px. 
 
+## Font-scaling
+
 However, there's a nicer way to scale up your fonts. Define the font-size in the body like so, and you can use rem units to scale them relative to that size. 
 
 ```css
@@ -65,6 +68,8 @@ body {
   margin-top: 2rem;
 }
 ```
+
+## Customizing elements with css classes
 We can also customize the buttons themselves. 
 
 ```
@@ -106,12 +111,82 @@ function spawnButtons(){
   alert("You clicked me! I'm button 3.")  
   }
 ```
+# Stats
+
+Say we would like to create at the bottom left corner of our screen a small bank of stats that display the current state of the sim. We can use css to position the statistics and javascript to interact with our sim and fetch the numbers. 
+
+```
+// dummy data to stand in for data fetched from sim
+var distance = 1354.34687956789;
+var velocity = 154.2687;
+var mass = 100;
+var degrees = 45;
+var stats = calculateStats();
+
+function calculateStats() {
+  var dist = "distance: " +  distance.toFixed(1) + " m <br>";
+  var vel =  "velocity: " +  velocity.toFixed(2) + " m/s <br>";
+  var m = "mass: " + mass + " kg <br>" ;
+  var theta = "angle: " + degrees + " &theta; <br>";
+  var newStats = (dist + vel + m + theta)
+  return newStats;
+}
+
+```
+The <br>s will create a line break. &theta; is a special html char that will display a theta symbol. (More are here.) whateverVariable.toFixed(1) will round the number in whateverVariable to the requested number of decimal places. However, our display isn't very nice. Let's wrap all our numbers in the variables in span tags so we can align them to the right: 
+
+```
+// in our css file
+.nums {
+  float: right;
+}
+
+// in our js file
+function calculateStats() {
+  var dist = "distance: <span class=\"nums\">" + distance.toFixed(1) + " m</span><br>";
+  var vel =  "velocity: <span class=\"nums\">" + velocity.toFixed(2) + " m/s </span><br>";
+  var m = "mass: <span class=\"nums\">" + mass + " kg</span><br>" ;
+  var theta = "angle: <span class=\"nums\">" + degrees + " &theta;</span><br>";
+  var newStats = (dist + vel + m + theta)
+  return newStats;
+}
+```
+
+Now we just need to insert the stats into our webpage. 
+
+```
+function setup() {
+  //create an empty div for the stats to live in
+  myDiv = createDiv('');
+  // add the stats as html into myDiv
+  myDiv.html(stats);
+  // myDiv will live now in its parent, stats-holder
+  myDiv.parent('stats-holder');
+}
+```
+
+And relocate our stats-holder div to the bottom left of our webpage:
+
+```
+// in our css file
+
+#stats-holder > * {
+  position: fixed;
+  min-width: 8.5em;
+  left: 20px;
+  bottom: 20px;
+}
+
+```
+
 
 # Sliders
 
 ```
-inputinput[type="range"] {
-font-size: 1.5rem;
+input[type="range"] {
+  font-size: 1.5rem;
+  position: fixed;
+  margin-top: 1.5rem;
 }
 ```
 
@@ -126,23 +201,15 @@ The CSS pseudo-selector ```::before``` acts like a coat hanger that you can hang
 ```
 input[type="range"]:nth-child(1)::before {
   content: "mass";
-  position: fixed;
-  margin-top: 1.5rem;
 }
 
 input[type="range"]:nth-child(2)::before {
   content: "distance";
-  position: fixed;
-  margin-top: 1.5rem;
 }
 
 input[type="range"]:nth-child(3)::before {
-  content: "angle";
-  position: fixed;
-  margin-top: 1.5rem;
-  
+  content: "angle";  
 }
-
 ```
 
 If another description is needed, there is also a ::after pseudoselector. 
@@ -164,7 +231,7 @@ function spawnControls() {
   
   ```mySlider = createSlider(smallestValue, largestValue, startingValue)``` will create a slider, which we assign to a variable named mySlider.
   
-  We can add classes to our slider by ```mySlider.class("random-css-class")``` and defining ```.random-css-class``` in our css file:
+ As with the buttons, we can add classes to our slider by ```mySlider.class("random-css-class")``` and defining ```.random-css-class``` in our css file:
   
   ```
   .random-css-class {
