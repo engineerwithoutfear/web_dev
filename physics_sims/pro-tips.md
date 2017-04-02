@@ -278,6 +278,31 @@ function spawnControls() {
   ```
   When the window is resized, the canvas will be rescaled. If elements of your sketch are based on percentage width or height, be sure to update w and h as well or recalculate their values in a function after resizeCanvas is called. 
   
+  
+  For example, here is a block that resizes itself based on the size of the browser window. Scaling to width alone results in too big of a block at large page sizes, so making it a function of both width and height is recommended. 
+  
+  ```
+  function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+	calcBlockDimensions();
+}
+
+function calcBlockDimensions(){
+	  blockDimensions = Math.sqrt(windowWidth + windowHeight) * 2
+  w = blockDimensions; // width
+  h = blockDimensions; // height
+}
+
+// excerpt to draw the block taken from the CCNY science.js library's KineticMass object:
+
+  this.display = function() {
+    fill(this.color);
+    stroke(this.outline);
+    rect(this.position.x - w/2, this.position.y - h, w, h);
+  };
+  ```
+  This will center the block in the middle of the sketch no matter the screensize.
+  
   ## windowWidth vs width
   
   windowWidth will always give you the width of the entire browser window. 
