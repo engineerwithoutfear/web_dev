@@ -1,6 +1,13 @@
 # Sim UI
 
-  For a full page sim, relocating the controls everytime a sim's size is changed becomes tedious quickly. Leveraging the power of CSS, we can make this much easier by anchoring our sliders and buttons to the side of the page rather than a specific location on canvas.
+  We have several choices of HTML elements when building the controls for our sim: 
+  
+  * checkboxes (radio buttons)
+  * buttons 
+  * switches 
+  * sliders 
+  
+  Relocating the controls everytime a sim's size is changed becomes tedious quickly. Leveraging the power of CSS, we can make this much easier by anchoring our sliders and buttons to the side of the page rather than a specific location on canvas. Rather than move each element individually, we will put each group in a box, arranging them how we like within it, and then move the box rather than the individual elements. Elements inside the div will retain their positions inside the box. 
   
   ```
 <div id="sketch-holder" style="position: relative;">  
@@ -16,9 +23,9 @@
   
   Buttons can be declared in HTML, but as we will be working in Javascript to create our p5 sketch, I have chosen to initialize them all in one place in our Javascript. 
   
-  # Creating Elements
+# Creating Elements
 
-# Buttons
+## Buttons
 
 ```
 // define buttons
@@ -51,25 +58,9 @@ These buttons will all live in the button-holder div. The position for all the b
 ```
 The #button-holder > * targets all child elements inside the button-holder div and displays them in a block format (vertical stack). We can also set the space between the buttons with margin. Since this button collection rests on the bottom corner of the page, I have set the margin-top to 20px. 
 
-## Font-scaling
 
-However, there's a nicer way to scale up your fonts. Define the font-size in the body like so, and you can use rem units to scale them relative to that size. 
 
-```css
-body {
-  font-size: 16px;
-}
-#button-holder {
-  right: 2rem;
-  bottom: 2rem;
-}
-#button-holder > * {
-  display: block;
-  margin-top: 2rem;
-}
-```
-
-## Customizing elements with css classes
+### Customizing elements with css classes
 We can also customize the buttons themselves. 
 
 ```
@@ -111,7 +102,9 @@ function spawnButtons(){
   alert("You clicked me! I'm button 3.")  
   }
 ```
-# Stats
+Other useful features are :hover and the :active selectors. 
+
+## Stats
 
 Say we would like to create at the bottom left corner of our screen a small bank of stats that display the current state of the sim. We can use css to position the statistics and javascript to interact with our sim and fetch the numbers. 
 
@@ -180,7 +173,7 @@ And relocate our stats-holder div to the bottom left of our webpage:
 ```
 
 
-# Sliders
+## Sliders
 
 ```
 input[type="range"] {
@@ -239,7 +232,77 @@ function spawnControls() {
     font-color: green;
   }
   ```
+  # Responsive Sims
   
+  When designing a sim, it is important to keep in mind that it may be viewed at any number of screen sizes and resolutions. For this reason, it is often useful to define dimensions in relative units rather than pixels. Rems, ems, and %s are all widely used to maintain proportions across screen sizes. 
   
+  ## Making a responsive canvas
+  
+  In your setup function, instead of using: 
+  
+  ```
+  createCanvas(400, 400)
+  ```
+  
+  Try using: 
+  
+  ```
+  createCanvas(windowWidth, windowHeight)
+  ```
+  If you want to store the dimensions at the time of page load for later calculations, just save them in a variable: 
+  
+  ```
+  var w = windowWidth;
+  var h = windowHeight;
+  ```
+  
+  ## Centering a sim object
+  
+  You can center an object by shifting the canvas origin:
+  
+  ```
+  push();
+   translate(windowWidth / 2, windowHeight / 2);
+   pop();
+   ```
+  Anything between the push pops will be affected by the translate. Items outside it will be unaffected. See the p5 docs for more information on how to use translate(). (Or here for another illustration)
+  
+  ## Resizing a canvas
+  
+  p5.js has a handy function built in for this:
+  
+  ```
+  function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  }
+  ```
+  When the window is resized, the canvas will be rescaled. If elements of your sketch are based on percentage width or height, be sure to update w and h as well or recalculate their values in a function after resizeCanvas is called. 
+  
+  ## windowWidth vs width
+  
+  windowWidth will always give you the width of the entire browser window. 
+  width will give you the width of your p5.canvas. 
+  
+  These can be the same thing--but not always!
+  
+  ## Font-scaling
+
+However, there's a nicer way to scale up your fonts. Define the font-size in the body like so, and you can use rem units to scale them relative to that size. 
+
+```css
+body {
+  font-size: 16px;
+}
+#button-holder {
+  right: 2rem;
+  bottom: 2rem;
+}
+#button-holder > * {
+  display: block;
+  margin-top: 2rem;
+}
+```
+
+This way, if you decide your sim needs a slightly bigger font-size, you can change it in one place and all the other values will update themselves proportionately. 
   
   
