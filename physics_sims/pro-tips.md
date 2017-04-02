@@ -37,6 +37,36 @@ function spawnButtons() {
 
 These buttons will all live in the button-holder div. The position for all the buttons can then be managed by changing a line or two of css for either the parent div or the rules governing all child elements rather than altering each individually. Here, I have chosen to affix our buttons to the side of the page: 
 
+
+```css
+#button-holder {
+  right: 20px;
+  bottom: 20px;
+}
+#button-holder > * {
+  display: block;
+  margin-top: 20px
+}
+```
+The #button-holder > * targets all child elements inside the button-holder div and displays them in a block format (vertical stack). We can also set the space between the buttons with margin. Since this button collection rests on the bottom corner of the page, I have set the margin-top to 20px. 
+
+However, there's a nicer way to scale up your fonts. Define the font-size in the body like so, and you can use rem units to scale them relative to that size. 
+
+```css
+body {
+  font-size: 16px;
+}
+#button-holder {
+  right: 2rem;
+  bottom: 2rem;
+}
+#button-holder > * {
+  display: block;
+  margin-top: 2rem;
+}
+```
+We can also customize the buttons themselves. 
+
 ```
 //in javascript file
 function spawnButtons(){
@@ -87,7 +117,7 @@ font-size: 1.5rem;
 
 ```input[type="range"]``` will select all the range sliders in your sim. 
 
-Starting from the top, you can use the ```:nth-child(n)``` to select a specific selector inside of a div.
+Starting from the top, you can use the ```:nth-child(n)``` to select a specific selector inside of a div. This is convenient, since it allows us to peg a label to a slider that will follow it wherever it goes. Add a text description of the slider with ```content``` and then position it with css. 
 
 The CSS pseudo-selector ```::before``` acts like a coat hanger that you can hang a small HTML coat on. Anything you put here will stay attached to the hanger, and you can easily shove it back and forth on the closet rod. 
 
@@ -114,6 +144,8 @@ input[type="range"]:nth-child(3)::before {
 }
 
 ```
+
+If another description is needed, there is also a ::after pseudoselector. 
 
 ```javascript
 
