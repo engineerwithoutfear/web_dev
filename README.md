@@ -39,7 +39,7 @@
 
 <A href="https://fcc-ewf-timestamp-api.herokuapp.com/">Microservice - Timestamp API</a>  (Heroku or <a href="https://supreme-ski.glitch.me/">Glitch.me</a>)
 
-<A href="https://warp-car.glitch.me/">Microservice - Who Am I?</a> (Glitch.me)
+<A href="https://warp-car.glitch.me/api/whoami">Microservice - Who Am I?</a> (Glitch.me)
 
 <A href="https://same-meal.glitch.me/">Microservice - URL Shortener</a> (Glitch.me)
 
