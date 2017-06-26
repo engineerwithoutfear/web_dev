@@ -4,64 +4,80 @@ body {
   box-sizing: border-box;
 }
 
-header,
-footer,
-.language {
+// lcars_colors
+$orange: #ff9900;
+$purple: #cc99cc;
+$blue: #9999ff;
+$lightBlue: #9999cc;
+$red: #cc0000;
+$lightRed: #cc6666;
+$tan: #ff9966;
+$lightTan: #ffcc99;
+$pink: #cc6699;
+$white: #ccccff;
+$width: 90%;
+
+.container {
+  // width: 90%;
+  margin: 0 auto;
+}
+header, .language-select, .language-current {
   border-radius: 1rem;
-  width: 90%;
+  width: $width;
   margin: 0 auto;
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
 
 header {
-  background: #9999ff;
+  background: $blue;
   font-size: 2rem;
 }
 
-footer {
-  background: #cc99cc;
+.language-select {
+  background: $purple;
 }
-
-.language {
-  background: #ff9900;
+.language-select-text-1 {
+  color: $purple;
+}
+.language-current {
+  background: $orange;
   font-size: 1.5rem;
 }
+.language-current-text-1 {
+  color: $orange;
+}
 
-.header-text,
-.footer-text,
-.language-text {
+.header-text, .language-select, .language-current-text {
   position: relative;
 }
 
-.footer-text,
-.language-text {
+.language-select-text, .language-current-text {
   text-align: center;
 }
 
-.header-text-1,
-.footer-text-1,
-.language-text-1 {
+.header-text-1, .language-select-text-1, .language-current-text-1 {
   padding-left: 1rem;
   padding-right: 1rem;
   display: inline-block;
+  text-transform: uppercase;
 }
 
 .header-text-1 {
-  background: black;
-  color: #9999ff;
+  color: $blue;
   margin-left: 2rem;
 }
-
-.footer-text-1 {
+.insets {
   background: black;
-  color: #cc99cc;
 }
-
-.language-text-1 {
-  background: black;
-  color: #ff9900;
+.language-current-text-1 {
+  min-width: 20%;
 }
+.language-current-text {
+}
+// .language-select-text-1 {
+//   min-width: 30%;
+// }
 
 .header-text-2 {
   color: black;
@@ -71,11 +87,10 @@ footer {
   bottom: 0%;
   display: inline-block;
 }
-
 p {
   margin: 0;
 }
-
+//gtfo weird paddings and etc
 textarea {
   outline: none;
   border: none;
@@ -84,42 +99,30 @@ textarea {
   resize: none;
 }
 
-textarea,
-.preview {
+textarea, .preview {
   background-color: black;
   color: white;
-  border-top: 5px solid #9999cc;
-  border-bottom: 5px solid #9999cc;
+  border-top: 5px solid $lightBlue;
+  border-bottom: 5px solid $lightBlue;
   box-sizing: border-box;
   font-size: 1.5rem;
 }
-
 textarea, p {
   padding: .5rem;
 }
 
-.container-flexbox {
+.display-panel {
   margin: 0 auto;
-  width: 90%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  width: $width;
   display: flex;
   min-height: 60vh;
 }
 
-@font-face {
-  font-family: "Vulcan";
-  src: url(Vulcan_Script_best.ttf) format("truetype");
-}
-.preview {
-  font-family: "Vulcan";
-}
-
-.container-flexbox > div {
+.display-panel > div {
   width: 100%;
 }
 
-.container-flexbox > div:first-child {
+.display-panel > div:first-child {
   margin-right: 1rem;
 }
 
@@ -128,40 +131,92 @@ textarea, p {
   height: 100%;
   width: 100%;
 }
-
 .ufp {
   position: absolute;
-  -webkit-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
   max-width: 90%;
   max-height: 90%;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-
 .hide-me {
   display: none;
 }
-
 .screensaver {
-  -webkit-animation: rotation 5s infinite linear;
-          animation: rotation 5s infinite linear;
+  animation: rotation 5s infinite linear;
 }
 
 @-webkit-keyframes rotation {
   from {
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
+    transform: rotateY(0deg);
   }
   to {
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
+    transform: rotateY(360deg);
   }
 }
 @media screen and (max-width: 680px) {
   .header-text-2 {
     display: none;
   }
+}
+
+@font-face {
+  font-family: "Vulcan";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Vulcan_Script_best.ttf)
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Romulan";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Romulan.ttf)
+    format("truetype");
+}
+@font-face {
+  font-family: "Borg";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Borg.ttf)
+    format("truetype");
+}
+@font-face {
+  font-family: "Klingon";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/KlingonTNG.ttf)
+    format("truetype");
+}
+@font-face {
+  font-family: "Cardassian";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Cardassian.ttf)
+    format("truetype");
+}
+@font-face {
+  font-family: "Dominion";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Dominion.ttf)
+    format("truetype");
+}
+@font-face {
+  font-family: "Ferengi";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Ferengi%201L.ttf)
+    format("truetype");
+}
+
+.vulcan {
+  font-family: "Vulcan";
+}
+.romulan {
+  font-family: "Romulan";
+}
+.cardassian {
+  font-family: "Cardassian";
+}
+.borg {
+  font-family: "Borg";
+}
+.klingon {
+  font-family: "Klingon";
+}
+
+.ferengi {
+  font-family: "Ferengi";
+}
+.dominion {
+  font-family: "Dominion";
 }
