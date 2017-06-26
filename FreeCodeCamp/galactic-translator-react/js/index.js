@@ -1,106 +1,127 @@
-"use strict";
-
 //stardate 2263.02
 //User Story: I can type text to be translated into a text area.
 //User Story: I can see a preview of the translated output that is updated as I type.
-var languages = ["Vulcan", "Romulan", "Klingon", "Borg", "Ferengi", "Dominion"];
 
-var App = React.createClass({
-  displayName: "App",
+const InputPanel = props =>
+  <div className="markdown">
+    <textarea
+      placeholder={props.placeholderMarkdown}
+      onChange={props.updateState}
+      value={props.text}
+      // autoFocus
+    />
+  </div>;
 
-  // set the display text of the input box
-  getInitialState: function getInitialState() {
-    return {
+const OutputPanel = props =>
+  <div className={"preview"}>
+
+    <div className={props.placeholderPreview ? "screensaver" : "hide-me"}>
+      <img
+        className="ufp"
+        src="https://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/galactic-translator-react/css/UFP_Emblem.svg"
+      />
+    </div>
+    <div className="previewText">
+      {" "}<div className={props.language}>
+        <div dangerouslySetInnerHTML={{ __html: marked(props.text) }} />
+      </div>
+    </div>
+  </div>;
+
+const Header = () =>
+  <header>
+    <div className="header-text">
+      <span className="header-text-1 insets">COMMAND CONSOLE: 09182</span>
+      <span className="header-text-2">USER: S 179-276 SP</span>
+    </div>
+  </header>;
+
+const LanguageMenu = props =>
+  <div className="language-menu" onClick={props.onClick}>
+    <div className="language-select">
+      <div className="language-select-text">
+        <span className="language-select-text-1 insets">
+          TRANSLATION LANGUAGE
+        </span>
+      </div>
+    </div>
+    <div className="language-current">
+      <div className="language-current-text">
+        <span className="language-current-text-1 insets">{props.language}</span>
+      </div>
+    </div>
+  </div>;
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       placeholderMarkdown: "Terminal ready.",
       placeholderPreview: true,
-      language: languages[0],
+      languages: [
+        "vulcan",
+        "romulan",
+        "klingon",
+        "borg",
+        "ferengi",
+        "dominion"
+      ],
+      index: 0,
+      language: "",
       text: ""
     };
-  },
-  updateState: function updateState(event) {
+
+    this.updateState = this.updateState.bind(this);
+    this.selectLanguage = this.selectLanguage.bind(this);
+    this.updateLanguage = this.updateLanguage.bind(this);
+  }
+  componentDidMount() {
+    this.selectLanguage();
+  }
+  updateState(e) {
     this.setState({
-      text: event.target.value,
+      text: e.target.value,
       placeholderPreview: false
     });
-  },
-  render: function render() {
-    return React.createElement(
-      "div",
-      null,
-      React.createElement(
-        "header",
-        null,
-        React.createElement(
-          "div",
-          { className: "header-text" },
-          React.createElement(
-            "span",
-            { className: "header-text-1" },
-            "COMMAND CONSOLE: 09182"
-          ),
-          React.createElement(
-            "span",
-            { className: "header-text-2" },
-            "USER: S 179-276 SP"
-          )
-        )
-      ),
-      React.createElement(
-        "div",
-        { className: "container-flexbox" },
-        React.createElement(
-          "div",
-          { className: "markdown" },
-          React.createElement("textarea", { placeholder: this.state.placeholderMarkdown, onChange: this.updateState,  value: this.state.text, autoFocus: true})
-        ),
-        React.createElement(
-          "div",
-          { className: "preview" },
-          React.createElement(
-            "div",
-            { className: this.state.placeholderPreview ? "screensaver" : "hide-me" },
-            React.createElement("img", { className: "ufp", src: "http://engineerwithoutfear.com/fonts/UFP_Emblem.svg" })
-          ),
-          React.createElement(
-            "div",
-            { className: "previewText" },
-            React.createElement("div", { dangerouslySetInnerHTML: { __html: marked(this.state.text) } })
-          )
-        )
-      ),
-      React.createElement(
-        "div",
-        { className: "language-menu" },
-        React.createElement(
-          "footer",
-          null,
-          React.createElement(
-            "div",
-            { className: "footer-text" },
-            React.createElement(
-              "span",
-              { className: "footer-text-1" },
-              "TRANSLATION LANGUAGE"
-            )
-          )
-        ),
-        React.createElement(
-          "div",
-          { className: "language" },
-          React.createElement(
-            "div",
-            { className: "language-text" },
-            React.createElement(
-              "span",
-              { className: "language-text-1" },
-              "VULCAN"
-            )
-          )
-        )
-      )
+  }
+  selectLanguage() {
+    this.setState({ language: this.state.languages[this.state.index] });
+  }
+  updateLanguage() {
+    this.setState(
+      {
+        index: this.state.index >= this.state.languages.length - 1
+          ? 0
+          : this.state.index + 1
+      },
+      this.selectLanguage
     );
   }
-});
+
+  render() {
+    return (
+      <div className="container">
+        <Header />
+        <div className="display-panel">
+          <InputPanel
+            placeholderMarkdown={this.state.placeholderMarkdown}
+            updateState={this.updateState}
+            value={this.state.text}
+          />
+          <OutputPanel
+            placeholderPreview={this.state.placeholderPreview}
+            text={this.state.text}
+            language={this.state.language}
+          />
+        </div>
+        <LanguageMenu
+          onClick={this.updateLanguage}
+          language={this.state.language}
+        />
+      </div>
+    );
+  }
+}
 
 // render all the things
-ReactDOM.render(React.createElement(App, null), document.getElementById('container-react'));
+ReactDOM.render(<App />, document.getElementById("container-react"));
