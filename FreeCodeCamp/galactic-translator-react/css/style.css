@@ -4,48 +4,38 @@ body {
   box-sizing: border-box;
 }
 
-// lcars_colors
-$orange: #ff9900;
-$purple: #cc99cc;
-$blue: #9999ff;
-$lightBlue: #9999cc;
-$red: #cc0000;
-$lightRed: #cc6666;
-$tan: #ff9966;
-$lightTan: #ffcc99;
-$pink: #cc6699;
-$white: #ccccff;
-$width: 90%;
-
 .container {
-  // width: 90%;
   margin: 0 auto;
 }
+
 header, .language-select, .language-current {
   border-radius: 1rem;
-  width: $width;
+  width: 90%;
   margin: 0 auto;
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
 
 header {
-  background: $blue;
+  background: #9999ff;
   font-size: 2rem;
 }
 
 .language-select {
-  background: $purple;
+  background: #cc99cc;
 }
+
 .language-select-text-1 {
-  color: $purple;
+  color: #cc99cc;
 }
+
 .language-current {
-  background: $orange;
+  background: #ff9900;
   font-size: 1.5rem;
 }
+
 .language-current-text-1 {
-  color: $orange;
+  color: #ff9900;
 }
 
 .header-text, .language-select, .language-current-text {
@@ -64,20 +54,17 @@ header {
 }
 
 .header-text-1 {
-  color: $blue;
+  color: #9999ff;
   margin-left: 2rem;
 }
+
 .insets {
   background: black;
 }
+
 .language-current-text-1 {
   min-width: 20%;
 }
-.language-current-text {
-}
-// .language-select-text-1 {
-//   min-width: 30%;
-// }
 
 .header-text-2 {
   color: black;
@@ -87,10 +74,11 @@ header {
   bottom: 0%;
   display: inline-block;
 }
+
 p {
   margin: 0;
 }
-//gtfo weird paddings and etc
+
 textarea {
   outline: none;
   border: none;
@@ -102,18 +90,21 @@ textarea {
 textarea, .preview {
   background-color: black;
   color: white;
-  border-top: 5px solid $lightBlue;
-  border-bottom: 5px solid $lightBlue;
+  border-top: 5px solid #9999cc;
+  border-bottom: 5px solid #9999cc;
   box-sizing: border-box;
   font-size: 1.5rem;
 }
+
 textarea, p {
   padding: .5rem;
 }
 
 .display-panel {
   margin: 0 auto;
-  width: $width;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   min-height: 60vh;
 }
@@ -131,28 +122,36 @@ textarea, p {
   height: 100%;
   width: 100%;
 }
+
 .ufp {
   position: absolute;
-  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
   max-width: 90%;
   max-height: 90%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
+
 .hide-me {
   display: none;
 }
+
 .screensaver {
-  animation: rotation 5s infinite linear;
+  -webkit-animation: rotation 5s infinite linear;
+          animation: rotation 5s infinite linear;
 }
 
 @-webkit-keyframes rotation {
   from {
-    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
   }
   to {
-    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
   }
 }
 @media screen and (max-width: 680px) {
@@ -160,56 +159,50 @@ textarea, p {
     display: none;
   }
 }
-
 @font-face {
   font-family: "Vulcan";
-  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Vulcan_Script_best.ttf)
-    format("truetype");
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Vulcan_Script_best.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "Romulan";
-  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Romulan.ttf)
-    format("truetype");
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Romulan.ttf) format("truetype");
 }
 @font-face {
   font-family: "Borg";
-  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Borg.ttf)
-    format("truetype");
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Borg.ttf) format("truetype");
 }
 @font-face {
   font-family: "Klingon";
-  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/KlingonTNG.ttf)
-    format("truetype");
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/KlingonTNG.ttf) format("truetype");
 }
 @font-face {
   font-family: "Cardassian";
-  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Cardassian.ttf)
-    format("truetype");
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Cardassian.ttf) format("truetype");
 }
 @font-face {
   font-family: "Dominion";
-  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Dominion.ttf)
-    format("truetype");
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Dominion.ttf) format("truetype");
 }
 @font-face {
   font-family: "Ferengi";
-  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Ferengi%201L.ttf)
-    format("truetype");
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Ferengi%201L.ttf) format("truetype");
 }
-
 .vulcan {
   font-family: "Vulcan";
 }
+
 .romulan {
   font-family: "Romulan";
 }
+
 .cardassian {
   font-family: "Cardassian";
 }
+
 .borg {
   font-family: "Borg";
 }
+
 .klingon {
   font-family: "Klingon";
 }
@@ -217,6 +210,7 @@ textarea, p {
 .ferengi {
   font-family: "Ferengi";
 }
+
 .dominion {
   font-family: "Dominion";
 }
