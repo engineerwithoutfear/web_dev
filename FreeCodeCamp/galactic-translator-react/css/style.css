@@ -4,9 +4,11 @@ body {
   box-sizing: border-box;
 }
 
-header,
-footer,
-.language {
+.container {
+  margin: 0 auto;
+}
+
+header, .language-select, .language-current {
   border-radius: 1rem;
   width: 90%;
   margin: 0 auto;
@@ -19,48 +21,49 @@ header {
   font-size: 2rem;
 }
 
-footer {
+.language-select {
   background: #cc99cc;
 }
 
-.language {
+.language-select-text-1 {
+  color: #cc99cc;
+}
+
+.language-current {
   background: #ff9900;
   font-size: 1.5rem;
 }
 
-.header-text,
-.footer-text,
-.language-text {
+.language-current-text-1 {
+  color: #ff9900;
+}
+
+.header-text, .language-select, .language-current-text {
   position: relative;
 }
 
-.footer-text,
-.language-text {
+.language-select-text, .language-current-text {
   text-align: center;
 }
 
-.header-text-1,
-.footer-text-1,
-.language-text-1 {
+.header-text-1, .language-select-text-1, .language-current-text-1 {
   padding-left: 1rem;
   padding-right: 1rem;
   display: inline-block;
+  text-transform: uppercase;
 }
 
 .header-text-1 {
-  background: black;
   color: #9999ff;
   margin-left: 2rem;
 }
 
-.footer-text-1 {
+.insets {
   background: black;
-  color: #cc99cc;
 }
 
-.language-text-1 {
-  background: black;
-  color: #ff9900;
+.language-current-text-1 {
+  min-width: 20%;
 }
 
 .header-text-2 {
@@ -84,21 +87,19 @@ textarea {
   resize: none;
 }
 
-textarea,
-.preview {
+textarea, .preview {
   background-color: black;
   color: white;
   border-top: 5px solid #9999cc;
   border-bottom: 5px solid #9999cc;
   box-sizing: border-box;
-  font-size: 1.5rem;
 }
 
 textarea, p {
   padding: .5rem;
 }
 
-.container-flexbox {
+.display-panel {
   margin: 0 auto;
   width: 90%;
   display: -webkit-box;
@@ -107,19 +108,11 @@ textarea, p {
   min-height: 60vh;
 }
 
-@font-face {
-  font-family: "Vulcan";
-  src: url(Vulcan_Script_best.ttf) format("truetype");
-}
-.preview {
-  font-family: "Vulcan";
-}
-
-.container-flexbox > div {
+.display-panel > div {
   width: 100%;
 }
 
-.container-flexbox > div:first-child {
+.display-panel > div:first-child {
   margin-right: 1rem;
 }
 
@@ -150,6 +143,10 @@ textarea, p {
           animation: rotation 5s infinite linear;
 }
 
+.previewText, textarea {
+  font-size: 1.5rem;
+}
+
 @-webkit-keyframes rotation {
   from {
     -webkit-transform: rotateY(0deg);
@@ -164,4 +161,59 @@ textarea, p {
   .header-text-2 {
     display: none;
   }
+}
+@font-face {
+  font-family: "Vulcan";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Vulcan_Script_best.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Romulan";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Romulan.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Borg";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/Borg.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Klingon";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/KlingonTNG.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Cardassian";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Cardassian.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Dominion";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Dominion.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Ferengi";
+  src: url(https://cdn.rawgit.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/galactic-translator-react/css/ST%20Ferengi%201L.ttf) format("truetype");
+}
+.vulcan {
+  font-family: "Vulcan";
+}
+
+.romulan {
+  font-family: "Romulan";
+}
+
+.cardassian {
+  font-family: "Cardassian";
+}
+
+.borg {
+  font-family: "Borg";
+}
+
+.klingon {
+  font-family: "Klingon";
+}
+
+.ferengi {
+  font-family: "Ferengi";
+}
+
+.dominion {
+  font-family: "Dominion";
 }
