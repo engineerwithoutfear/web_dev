@@ -1,0 +1,503 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.normal-link:hover {
+    text-decoration: underline;
+}
+
+
+/*my stuff  */
+
+h1 {
+    text-transform: uppercase
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.about-container>* {
+    padding: 1rem;
+}
+
+.activeSetting.setting-option {
+    background: grey;
+}
+
+.settings-container>* {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    flex: 1;
+    height: 100%;
+}
+
+.setting>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.setting>*>* {
+    /* display: flex;
+    flex-direction: row;
+    flex: 1;
+    border: 1px solid purple; */
+}
+
+.setting-option {
+    background-color: rgba(255, 255, 255, 0.4);
+    /* border-left: 1px solid rgba(48, 45, 45, 0.3); */
+    border-top: 1px solid rgba(48, 45, 45, 0.3);
+    border-right: 1px solid rgba(48, 45, 45, 0.3);
+}
+
+.setting-description {
+    min-width: 40%;
+    background: rgba(48, 45, 45, 0.3);
+    border-top: 1px solid grey;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger-menu-container {
+    font-size: 2rem;
+    display: flex;
+    max-width: 30%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.hamburger-menu-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.main-island {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    background: rgba(48, 45, 45, 0.15);
+    /* border: 1px solid rgba(48, 45, 45, 0.8); */
+}
+
+.container {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-width: 80%;
+    min-height: 100vh;
+    background: rgba(48, 45, 45, 0.15);
+}
+
+#site-canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#site-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#site-menu {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: -100%;
+    top: 0;
+    z-index: 10;
+    /* background: #91989F; */
+    background: rgba(40, 40, 40, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+#site-menu>* {
+    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* border-top: 1px solid rgba(48, 45, 45, 0.8);
+    border-bottom: 1px solid rgba(48, 45, 45, 0.8); */
+    border-top: 1px solid rgba(200, 200, 200, 0.2);
+    border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+    color: rgba(200, 200, 200, 0.9);
+}
+
+.site-menu-option:not(.site-menu-status):hover {
+    background: rgba(91, 98, 99, .2);
+    color: rgba(10, 10, 10, 1);
+    font-size: 2.5rem;
+    transition: .1s linear all;
+}
+
+.site-menu-option.site-menu-status:hover {
+    background: rgba(91, 98, 99, .2);
+    color: rgba(10, 10, 10, 1);
+    /* font-size: 2.5rem; */
+    transition: .1s linear all;
+}
+
+#site-menu>*>* {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-menu-option>* {
+    padding: 1rem;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: left; */
+}
+
+#site-menu.show-nav {
+    transform: translateX(100%);
+    transition: .3s ease all;
+}
+
+#site-menu.hide-nav {
+    transform: translateX(0);
+    transition: .3s ease all;
+}
+
+li {
+    list-style-type: none;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+}
+
+.progressbar-container {
+    background: rgba(48, 45, 45, 0.8);
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.progressbar-progress {
+    background: #91989F;
+    height: 100%;
+}
+
+.progressbar-text {
+    font-size: 1.4rem;
+    align-self: center;
+    width: 100%;
+}
+
+.questionContainer {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.questionContainer>* {
+    display: flex;
+    /* flex: 1; */
+    justify-content: center;
+    align-items: center;
+}
+
+.questionContainer>*>* {
+    border: 1px solid rgba(48, 45, 45, 0.3);
+}
+
+.question {
+    min-height: 20vh;
+    /* align-items: center; */
+    /* align-self: center; */
+}
+
+.choices {
+    background: rgba(48, 45, 45, 0.2);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.answer {
+    align-items: center;
+    min-height: 10vh;
+}
+
+.choices>*:hover {
+    background: rgba(white, 0.1);
+}
+
+.setting-option:not(.activeSetting):hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.setting-option:hover {
+    /* transform: translateZ(20%); */
+    /* color: rgba(black, 1); */
+    /* font-size: 1.2rem; */
+    /* transition: .1s linear all; */
+}
+
+div[class*="option-"] {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+div[class*="choice-"] {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+div[class*="choice-"]:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+:root {
+    font-size: 16px;
+}
+
+@media (min-width: 600px) and (max-width: 1800px) {
+     :root {
+        font-size: calc( 16px + (30 - 16) * ( (100vw - 600px) / (1800 - 600)));
+    }
+}
+
+@media (min-width: 1800px) {
+     :root {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 800px) {
+    .questionContainer {
+        /* height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-around;
+        margin: 0 auto; */
+    }
+    .choices {
+        /* flex-direction: column;
+        align-items: stretch;
+        justify-content: center; */
+    }
+    .choices>* {
+        /* padding-top: 2rem;
+        padding-bottom: 2rem; */
+    }
+    .settings-container>* {
+        /* display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch; */
+        /* height: 90%;
+    width: 90%; */
+        /* margin: 0 auto; */
+    }
+}
