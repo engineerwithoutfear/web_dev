@@ -4,7 +4,6 @@
 
 <A HREF="http://engineerwithoutfear.github.io/">engineerwithoutfear.github.io</a>
 
-
 ## Visualizations
 
 ### Various science and data visualizations.
@@ -42,6 +41,11 @@
 
 <A href="https://same-meal.glitch.me/">Microservice - URL Shortener</a> (Glitch.me)
 
+## Recommended Reading List
+
+<A HREF="https://github.com/engineerwithoutfear/webdev-resources">Web Development Resources</a>
+
+------------------------------------
 
 ## The Dreg Heap 
 
