@@ -11,7 +11,11 @@ const Quiz = (props) => (
             <div data-letter="C" onClick={props.guess} className="choice-c">{props.c}</div>
             <div data-letter="D" onClick={props.guess} className="choice-d">{props.d}</div>
         </div>
-        <div className="answer">{props.message}</div>
+        <div className="status">
+            <div className="message">{props.message}</div>
+            <div className="answer">{"" && props.lastGuess}</div>
+
+        </div>
     </div>
 )
 

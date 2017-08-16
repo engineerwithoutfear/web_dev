@@ -1,0 +1,59 @@
+//stardate 2263.02
+//User Story: I can type text to be translated into a text area.
+//User Story: I can see a preview of the translated output that is updated as I type.
+var languages = ["Vulcan", "Romulan", "Klingon", "Borg", "Ferengi", "Dominion"];
+
+var App = React.createClass({
+  // set the display text of the input box
+  getInitialState: function() {
+    return {
+      placeholderMarkdown: "Terminal ready.",
+      placeholderPreview: true,
+      language: languages[0],
+      text: ""
+    };
+  },
+  updateState: function(event) {
+    this.setState({
+      text: event.target.value,
+      placeholderPreview : false
+    });
+  },
+  render: function() {
+    return (
+      <div>
+        <header>
+          <div className = "header-text">
+            <span className = "header-text-1">COMMAND CONSOLE: 09182</span>
+            <span className = "header-text-2">USER: S 179-276 SP</span>
+          </div>
+        </header>
+        <div className = "container-flexbox">
+        <div className = "markdown">
+      <textarea  placeholder={this.state.placeholderMarkdown} onChange={this.updateState} value={this.state.text}/>
+          </div>
+          <div  className = "preview"><div className = {this.state.placeholderPreview ? "screensaver" : "hide-me"}><img className = "ufp" src ="http://engineerwithoutfear.com/fonts/UFP_Emblem.svg"/></div><div className="previewText">
+            <div  dangerouslySetInnerHTML =         {{__html: marked(this.state.text)}}></div>
+             </div>
+          </div>
+        </div>
+        <div className = "language-menu">
+        <footer>
+          <div className = "footer-text">
+          <span className = "footer-text-1">TRANSLATION LANGUAGE</span>
+          
+          </div>
+        </footer>
+        <div className = "language">
+          <div className = "language-text"><span className = "language-text-1">VULCAN</span>
+          </div>
+          </div></div>
+        </div>);
+  }
+});
+
+// render all the things
+ReactDOM.render(
+  <App />,
+  document.getElementById('container-react')
+);

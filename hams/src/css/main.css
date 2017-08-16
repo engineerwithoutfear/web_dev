@@ -419,9 +419,22 @@ li {
     align-items: stretch;
 }
 
-.answer {
+.status {
     align-items: center;
     min-height: 10vh;
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+}
+
+.answer {
+    border: none;
+    padding: 5px;
+}
+
+.message {
+    border: none;
+    /* transition: .1s linear all; */
 }
 
 .choices>*:hover {

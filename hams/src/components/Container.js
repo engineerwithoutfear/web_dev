@@ -34,6 +34,7 @@ class Container extends Component {
             d: dataset.questions[i].choices.d,
             answer: dataset.questions[i].answer,
             message: "",
+            lastGuess: "",
             displayProgressIndicator: true,
             menuOpen: false,
             subMenuOpen: false
@@ -80,10 +81,13 @@ class Container extends Component {
             newExam = examExtra
         }
         this.setState({
+            lastGuess: "",
             questions: newExam.questions,
             index: 0,
             data: newExam,
-            total: newExam.questions.length
+            total: newExam.questions.length,
+            completed: 0,
+            uniqueRandoms: []
         }, this.update)
     }
     toggleDisplayProgressIndicator() {
@@ -177,9 +181,15 @@ class Container extends Component {
     }
     notifyOfResult() {
         if (this.state.guessedCorrectly) {
-            this.setState({message: "Good job!"});
+            this.setState({
+                message: "Good job!",
+                lastGuess: "The answer was: '" + this.state[(this.state.guess.toLowerCase())] + ".'"
+            });
         } else {
-            this.setState({message: "BEEP! Try again."});
+            this.setState({
+                message: "BEEP! Try again.",
+                lastGuess: "It's not: '" + this.state[(this.state.guess.toLowerCase())] + ".'"
+            });
         }
     }
     handleGuess(e) {
