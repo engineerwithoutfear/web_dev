@@ -1,15 +1,17 @@
 body {
   background: rgba(128, 128, 128, 0.1);
+  text-align: center;
 }
 
 .page-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.page-header {
-  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 button {
@@ -19,30 +21,31 @@ button {
 }
 
 .game-board {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   margin: 0 auto;
-  position: relative;
 }
 
 .line {
-  width: 300px;
-  height: 30px;
+  width: 500px;
+  height: 50px;
 }
 
 .square {
-  box-sizing: border-box;
-  width: 30px;
-  height: 30px;
-  border: 2px solid black;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
   float: left;
   background-color: grey;
-  text-align: center;
-}
-
-.new-game {
-  text-align: center;
-  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .red {
@@ -50,7 +53,7 @@ button {
 }
 
 .cleared {
-  background-color: rgba(0, 0, 255, 0.2);
+  background-color: rgba(0, 0, 255, 0.3);
 }
 
 .grey {
@@ -58,11 +61,10 @@ button {
 }
 
 .alert {
-  width: 100%;
-  text-align: center;
   display: none;
 }
 
 .messages {
-  margin: 0 auto;
+  width: 100%;
+  min-height: 5vh;
 }
