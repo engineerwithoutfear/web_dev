@@ -1,0 +1,61 @@
+$board-size: 300px;
+$cell-size: 30px;
+
+body{
+  background: rgba(grey,.1)
+}
+.page-container{
+  display:flex;
+  
+}
+.page-header {
+	text-align: center;
+}
+button {
+  font-size: 1rem;
+  padding:15px;
+  border-radius: 5px;
+}
+.game-board {
+	width: $board-size;
+	height: $board-size;
+	margin: 0 auto;
+  position: relative;
+}
+.line {
+	width: $board-size;
+	height: $cell-size;
+}
+.square {
+	box-sizing: border-box;
+	width: $cell-size;
+	height: $cell-size;
+	border: 2px solid black;
+	float: left;
+	background-color: grey;
+	text-align: center;
+}
+
+.new-game {
+	text-align: center;
+	margin-top: $cell-size
+}
+.red  {
+	color: red;
+}
+.cleared {
+	background-color: rgba(blue, .2);
+}
+.grey {
+	color: rgba(grey, .4);
+}
+.alert {
+	width: 100%;
+  text-align:center;
+	display: none;
+  // background:white;
+}
+.messages{
+  margin: 0 auto;
+}
+

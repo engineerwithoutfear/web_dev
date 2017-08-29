@@ -1,0 +1,68 @@
+body {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.page-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.page-header {
+  text-align: center;
+}
+
+button {
+  font-size: 1rem;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.game-board {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.line {
+  width: 300px;
+  height: 30px;
+}
+
+.square {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  float: left;
+  background-color: grey;
+  text-align: center;
+}
+
+.new-game {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.red {
+  color: red;
+}
+
+.cleared {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+.grey {
+  color: rgba(128, 128, 128, 0.4);
+}
+
+.alert {
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+.messages {
+  margin: 0 auto;
+}
