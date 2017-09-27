@@ -1,0 +1,149 @@
+html,
+body {
+  background: black;
+  text-align: center;
+  color: white;
+  font-family: Michroma;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.wrapper {
+  height: 100vh;
+}
+.container-page {
+  // padding: 1rem;
+  margin: 0 auto;
+  max-width: 90%;
+  min-height: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+}
+
+.container-location {
+  // padding:1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.container-weather {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  flex-grow: 2;
+  border-bottom: 0.25rem solid red;
+}
+.container-weather > div {
+  // padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.summary {
+  font-size: 3rem;
+  line-height: 2.5rem;
+  flex: 1;
+}
+.location {
+  font-size: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.temp {
+  font-size: 3rem;
+  flex: 1;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.wi {
+  font-size: 9rem;
+  line-height: inherit;
+  flex: 1;
+}
+
+.unit {
+  color: red;
+  margin-left: 0.2rem;
+}
+
+.unit:hover {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+// auto text resizing
+// These values are the minimum and maximum viewport sizes to apply the font scaling
+$min_width: 480;
+$max_width: 1980;
+$min_font: 14;
+$max_font: 30;
+:root {
+  font-size: #{$min_font}px;
+}
+
+@media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+  :root {
+    font-size: calc(
+      #{$min_font}px + (#{$max_font} - #{$min_font}) *
+        (
+           (100vw - #{$min_width}px) / (#{$max_width} - #{$min_width})
+        )
+    );
+  }
+}
+
+@media (min-width: #{$max_width}px) {
+  :root {
+    font-size: #{$max_font}px;
+  }
+}
+
+@media (min-width: 800px) {
+  .container-weather {
+    flex-direction: row;
+  }
+  .summary {
+    word-spacing: 100vw;
+  }
+}
+// html,body{
+//   border: 1px solid purple;
+// }
+
+// .container {
+//   border: 1px solid yellow;
+// }
+// .container-weather {
+//   border: 1px solid green;
+// }
+
+// .container-weather > div {
+//   border: 1px solid blue;
+// }
+// .container-location {
+//   border: 1px solid blue;
+// }
+
+// .location {
+//   border: 1px solid orange;
+// }
+
+// .summary {
+//   border: 1px solid yellow;
+// }
