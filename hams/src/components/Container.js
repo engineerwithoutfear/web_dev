@@ -1,25 +1,22 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import Main from './Main'
 import Header from './Header'
-import ExpandedMenu from './ExpandedMenu'
+import OffCanvasMenu from './OffCanvasMenu'
 import examTechnician from '../assets/json/qs_technician'
 import examGeneral from '../assets/json/qs_general'
 import examExtra from '../assets/json/qs_extra'
 import '../css/main.css'
 
-// reset index on exam change and also the progress
-
 class Container extends Component {
     constructor(props) {
         super(props);
-        var i = 0;
+        let i = 0;
+        let completed = 0;
         let dataset = examTechnician;
         this.state = {
             mode: "orderly",
             uniqueRandoms: [],
             correctAnswer: dataset.questions[i].answer,
-            progressBarColor: "#0BD318",
-            progressBarHeight: 50,
             completed: 0,
             total: dataset.questions.length,
             percent: 0,
@@ -35,11 +32,8 @@ class Container extends Component {
             answer: dataset.questions[i].answer,
             message: "",
             lastGuess: "",
-            displayProgressIndicator: true,
-            menuOpen: false,
-            subMenuOpen: false
+            menuOpen: false
         };
-
         this.handleGuess = this
             .handleGuess
             .bind(this);
@@ -49,9 +43,6 @@ class Container extends Component {
         this.toggleExam = this
             .toggleExam
             .bind(this)
-        this.toggleDisplayProgressIndicator = this
-            .toggleDisplayProgressIndicator
-            .bind(this)
         this.toggleMenu = this
             .toggleMenu
             .bind(this)
@@ -59,66 +50,45 @@ class Container extends Component {
             .changeQuestionPool
             .bind(this)
     }
-    toggleMenu() {
+    handleGuess(e) {
+        e.preventDefault();
         this.setState({
-            menuOpen: !this.state.menuOpen
-        })
+            guess: e.target.dataset.letter
+        }, this.isGuessCorrect);
     }
-    toggleExam(e) {
-        let newExam = e.target.dataset.exam;
+    isGuessCorrect() {
         this.setState({
-            exam: newExam
-        }, this.changeQuestionPool)
-
+            guessedCorrectly: this.state.answer === this.state.guess
+                ? true
+                : false
+        }, this.notifyOfResult);
     }
-    changeQuestionPool() {
-        let newExam;
-        if (this.state.exam === "technician") {
-            newExam = examTechnician
-        } else if (this.state.exam === "general") {
-            newExam = examGeneral
+    notifyOfResult() {
+        if (this.state.guessedCorrectly) {
+            this.setState({
+                message: "Good job!"
+            }, this.increment);
         } else {
-            newExam = examExtra
+            this.setState({message: "BEEP! Try again."});
+        }
+    }
+    increment() {
+        let inc;
+        if (this.state.mode === "orderly") {
+            inc = this.state.index + 1
+        } else {
+            inc = this.fetchRandomIndex()
         }
         this.setState({
-            lastGuess: "",
-            questions: newExam.questions,
-            index: 0,
-            data: newExam,
-            total: newExam.questions.length,
-            completed: 0,
-            uniqueRandoms: []
-        }, this.update)
-    }
-    toggleDisplayProgressIndicator() {
-        this.setState({
-            displayProgressIndicator: (this.state.displayProgressIndicator === true
-                ? false
-                : true)
-        })
-    }
-    toggleMode() {
-        this.setState({
-            mode: (this.state.mode === "orderly"
-                ? "random"
-                : "orderly"),
-            completed: 0
-        })
-    }
-    fetchRandomIndex() {
-        var numRandoms = this.state.total;
-        var uniqueRandoms = this.state.uniqueRandoms;
-        // refill the array if needed
-        if (!uniqueRandoms.length) {
-            for (var i = 0; i < numRandoms; i++) {
-                uniqueRandoms.push(i);
-            }
+            completed: this.state.completed + 1,
+            index: inc
+        }, this.update);
+        if (this.state.completed + 1 > this.state.total) {
+            this.setState({
+                completed: 1
+            }, this.calculateCompletion);
         }
-        var index = Math.floor(Math.random() * uniqueRandoms.length);
-        var uniqueIndex = uniqueRandoms[index];
-        // now remove that value from the array
-        uniqueRandoms.splice(index, 1);
-        return uniqueIndex;
+        this.getNewQuestion();
     }
     update() {
         this.calculateCompletion();
@@ -140,86 +110,97 @@ class Container extends Component {
             answer: this.state.questions[i].answer,
             guess: "",
             guessedCorrectly: false
-        });
+        }, this.calculateCompletion);
     }
-    increment() {
-        var inc;
-        if (this.state.mode === "orderly") {
-            inc = this.state.index + 1
 
-        } else {
-            inc = this.fetchRandomIndex()
+    toggleMenu() {
+        this.setState({
+            menuOpen: !this.state.menuOpen
+        })
+    }
+    toggleExam(e) {
+        let newExam = e.target.dataset.exam;
+        this.setState({
+            exam: newExam
+        }, this.changeQuestionPool)
+    }
+    changeQuestionPool() {
+        let newExam;
+        switch (this.state.exam) {
+            case "extra":
+                newExam = examExtra;
+                break;
+            case "general":
+                newExam = examGeneral
+                break;
+            default:
+                newExam = examTechnician;
         }
         this.setState({
-            completed: this.state.completed + 1,
-            index: inc
-        }, this.update);
-        if (this.state.completed + 1 > this.state.total) {
-            this.setState({
-                completed: 1
-            }, this.calculateCompletion);
-        }
+            lastGuess: "",
+            questions: newExam.questions,
+            index: 0,
+            data: newExam,
+            total: newExam.questions.length,
+            completed: 0,
+            uniqueRandoms: []
+        }, this.getNewQuestion)
+    }
 
-        this.getNewQuestion();
-    }
-    click(e) {
-        e.preventDefault();
-        this.increment();
-    }
-    isGuessCorrect() {
+    toggleMode() {
         this.setState({
-            guessedCorrectly: this.state.answer === this.state.guess
-                ? true
-                : false
-        }, this.continueOn);
+            mode: (this.state.mode === "orderly"
+                ? "random"
+                : "orderly"),
+            completed: 0
+        })
     }
-    continueOn() {
-        if (this.state.guessedCorrectly) {
-            this.increment();
+    fetchRandomIndex() {
+        let numRandoms = this.state.total;
+        let uniqueRandoms = this.state.uniqueRandoms;
+        // refill the array if needed
+        if (!uniqueRandoms.length) {
+            for (let i = 0; i < numRandoms; i++) {
+                uniqueRandoms.push(i);
+            }
         }
-        this.notifyOfResult();
+        let index = Math.floor(Math.random() * uniqueRandoms.length);
+        let uniqueIndex = uniqueRandoms[index];
+        // now remove used up value from the array
+        uniqueRandoms.splice(index, 1);
+        return uniqueIndex;
     }
-    notifyOfResult() {
-        if (this.state.guessedCorrectly) {
-            this.setState({
-                message: "Good job!",
-                lastGuess: "The answer was: '" + this.state[(this.state.guess.toLowerCase())] + ".'"
-            });
-        } else {
-            this.setState({
-                message: "BEEP! Try again.",
-                lastGuess: "It's not: '" + this.state[(this.state.guess.toLowerCase())] + ".'"
-            });
-        }
-    }
-    handleGuess(e) {
-        e.preventDefault();
-
-        this.setState({
-            guess: e.target.dataset.letter
-        }, this.isGuessCorrect);
-    }
-
     render() {
         let className = this.state.menuOpen
             ? "show-nav"
             : "hide-nav";
+        let overlay = this.state.menuOpen
+            ? "overlay-active"
+            : "overlay-dormant"
+        let scooter = this.state.menuOpen
+            ? "scoot-him"
+            : "";
         let action;
         if (this.state.menuOpen) {
             action = this.toggleMenu
         }
         return (
-            <div id="site-wrapper">
-                <div id="site-canvas">
-                    <ExpandedMenu {...this.state} toggleMenu={this.toggleMenu} class={className}/>
-                    <div className="container" onClick={action}>
-                        <Header {...this.state} toggleMenu={this.toggleMenu}/>
-                        <Main
-                            index={this.state.index}
-                            {...this.state}
-                            guess={this.handleGuess}
-                            toggleMode={this.toggleMode}
-                            toggleExam={this.toggleExam}/>
+            <div>
+                <div id="site-wrapper">
+                    <div><OffCanvasMenu
+                        { ...this.state }
+                        toggleMenu={this.toggleMenu}
+                        class={className}/></div>
+                    <div id="site-canvas" className={overlay}>
+                        <div className="container" onClick={action}>
+                            <Header { ...this.state } toggleMenu={this.toggleMenu}/>
+                            <Main
+                                { ...this.state }
+                                handleGuess={this.handleGuess}
+                                toggleMode={this.toggleMode}
+                                toggleExam={this.toggleExam}/>
+
+                        </div>
                     </div>
                 </div>
             </div>

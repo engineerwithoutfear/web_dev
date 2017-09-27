@@ -1,12 +1,14 @@
-import React from 'react';
-import ProgressPanel from './ProgressPanel'
+import React from 'react'
+import ProgressBar from './ProgressBar'
 import Hamburger from './Hamburger'
 
 const Header = (props) => (
     <div className="header">
-        <Hamburger {...props} toggleMenu={props.toggleMenu}/>
-        <ProgressPanel {...props}/>
-
+        <Hamburger toggleMenu={props.toggleMenu}/>
+        <ProgressBar
+            percent={props.percent}
+            completed={props.completed}
+            total={props.total}/>
     </div>
 )
 

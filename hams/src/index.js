@@ -1,27 +1,12 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/app';
+import App from './App';
+import {BrowserRouter, HashRouter} from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
-import {Provider} from 'react-redux'
-import {ConnectedRouter} from 'react-router-redux'
-import store, {history} from './store'
-import './index.css'
 
-
-
-render(
-<Provider store={store}>
-<ConnectedRouter history={history}>
-<div><App/>
-</div>
-
-</ConnectedRouter>
-
-</Provider>
-
-
-
-, document.getElementById('root'));
+ReactDOM.render(
+  <HashRouter>
+  <App/>
+</HashRouter>, document.getElementById('root'));
 registerServiceWorker();
-
