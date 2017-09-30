@@ -1,0 +1,179 @@
+$spacing: 1rem;
+html,
+body {
+  height: 100%;
+
+  overflow: hidden;
+  font-family: Helvetica, Arial, Sans-serif;
+  color: rgba(black, 0.7);
+}
+* {
+  box-sizing: border-box;
+}
+
+#button-holder {
+  display: flex;
+  flex-direction: column;
+  min-height: 4rem;
+  max-height: 50%;
+  min-width: 15%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  background-color: rgba(blue, 0.1);
+  text-transform: uppercase;
+  cursor: pointer;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  // border-radius: 5px;
+  padding: 15px;
+}
+
+.button:hover,
+.slider-holder:hover {
+  background-color: rgba(blue, 0.2);
+  color: rgba(black, 0.9);
+}
+#stats-holder,
+#slider-holder,
+#button-holder {
+  // margin:5px;
+}
+
+#stats-holder {
+  min-height: 30%;
+  max-height: 50%;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: rgba(blue, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+  font-size: 0.8rem;
+}
+#stats-holder > * > * {
+  // border: 1px solid rgba(blue,.3);
+  width: 100%;
+}
+#stats-holder > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+  text-align: center;
+}
+#slider-holder {
+  position: fixed;
+  bottom: 0;
+  background: rgba(blue, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 25%;
+  max-height: 50%;
+}
+#slider-holder > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  width: 100%;
+  align-items: space-around;
+  flex: 1;
+}
+#slider-holder > * > * {
+}
+
+input[type="range"] {
+}
+input[type="range"]:nth-child(1)::before,
+input[type="range"]:nth-child(2)::before {
+  position: fixed;
+  // font-size: 1rem;
+  color: rgba(black, 0.9);
+}
+input[type="range"]:nth-child(1)::before {
+  content: "amplitude";
+}
+
+input[type="range"]:nth-child(2)::before {
+  content: "frequency";
+}
+
+.equation {
+  width: 100%;
+  display: flex;
+}
+.equation-left {
+  flex: 1;
+  text-align: right;
+  // border: 1px solid green;
+}
+.equation-right {
+  width: 100%;
+  flex: 7;
+  text-align: left;
+}
+
+@media (max-width: 500px) {
+  #stats-holder {
+    display: none;
+  }
+  #slider-holder {
+    min-width: 50vw;
+  }
+}
+
+@media (max-width: 800px) {
+  #stats-holder {
+    max-width: 50%;
+    max-height: 50vh;
+  }
+  #slider-holder {
+    min-width: 50vw;
+    min-height: 20vh;
+  }
+}
+
+.slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 100%; /* Specified height */
+  outline: none;
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.1s; //0.2 seconds transition on hover
+  transition: opacity 0.1s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 0.8; //Fully shown on mouse-over
+}
+
+/* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 1rem;
+  height: 9vh;
+  background: rgba(blue, 0.7);
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 1rem; /* Set a specific slider handle width */
+  height: 2rem; /* Slider handle height */
+  background: rgba(blue, 0.7);
+  cursor: pointer;
+}
