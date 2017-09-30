@@ -225,9 +225,7 @@ this.changeFrequency = function (){
     this.updateStats();
   };
   this.updateStats = function() {
-    this.stats = "<div>amplitude: " + Sim.amp + "</div>";
-    this.stats += "<div>frequency: " + Math.abs(Sim.freq) + "</div>";
-    this.stats += "<div>y(t) = amplitude * sin(frequency*t)</div>";
+    this.stats = "<div>y(t) = amplitude * sin(frequency*t)</div>";
     this.stats +=
       "<div class='equation'><div class='equation-left'>" +
       Sim.point.y.toFixed(0) * -1 +
