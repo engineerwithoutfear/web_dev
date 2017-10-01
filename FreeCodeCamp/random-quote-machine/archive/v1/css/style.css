@@ -1,0 +1,125 @@
+  * {
+    text-align: center;
+  }
+  
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-size: 14px;
+  }
+  
+  .tweeter {
+    border-radius: 15px;
+    background: #46494C;
+  }
+  
+  .fa-circle,
+  .fa-circle:hover {
+    color: #46494C;
+  }
+  
+  .quote-box {
+    animation-duration: .5s;
+    animation-delay: 0s;
+  }
+  
+  body {
+    font-family: 'Garamond', 'EB Garamond';
+    font-weight: 400;
+    color: #46494C;
+    background: url("rain_bg.jpg") no-repeat fixed center;
+    background-size: cover;
+  }
+  
+  .island {
+    background-color: grey;
+    background: rgba(197, 195, 198, 0.9);
+    color: #38302E;
+    padding: 1em;
+    border-radius: 15px;
+  }
+  
+  button.next-quote {
+    color: #46494C;
+    background-color: #E9E3E6;
+    border: 1px solid #E9E3E6;
+  }
+  
+  button:hover {
+    color: #38302E;
+    background-color: #ebe5e8;
+    border: 1px solid #46494C;
+  }
+  
+  button {
+    padding: 1em;
+    border-radius: 100%;
+    margin: 1em;
+  }
+  
+  .tooltip > .tooltip-inner {
+    background: rgba(197, 195, 198, 0.9);
+    color: #38302E;
+    border: none;
+    padding: .4em;
+    font: Garamond;
+    font-size: 1em;
+  }
+  
+  .tooltip {
+    font-size: 1.5em;
+  }
+  .island {
+      min-width: 60%;
+    }
+  
+  @media screen and (max-width: 499px) {
+    .island,
+    .tweeter {
+      margin: 1em;
+    }
+    .island,
+    .tweeter {
+      max-width: 100%;
+    }
+    .quote {
+      font-size: 2em;
+      margin: .5em;
+    }
+    .source {
+      font-size: 1.5em;
+      margin: .5em;
+    }
+  }
+  
+  @media screen and (min-width: 500px) {
+    .tweeter {
+      right: 0;
+      bottom: 0;
+      margin: 1em;
+      position: absolute;
+    }
+    .tweeter,
+    button {
+      font-size: .4em;
+    }
+    .island {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .container-fluid {
+      min-width: 60%;
+    }
+    .quote {
+      font-size: 1em;
+      margin: .5em;
+    }
+    .source {
+      font-size: .75em;
+      margin: .5em;
+    }
+  }

@@ -1,0 +1,149 @@
+$primary-color: rgb(197, 197, 197); //background-color: #E9E3E6;
+$secondary-color: #46494c;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Garamond;
+  min-height: 100vh;
+  width: 100%;
+}
+body {
+  background: url("https://raw.githubusercontent.com/engineerwithoutfear/web_dev/gh-pages/FreeCodeCamp/random-quote-machine/css/rain_bg.jpg")
+    no-repeat fixed center;
+}
+
+.container-quotebox,
+.container-tweeter {
+  cursor: pointer;
+}
+
+.container-tweeter {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 3rem;
+  max-width: 20%;
+  height: 2rem;
+  color: rgba($primary-color, 0.9);
+  border-radius: 5px;
+  background: rgba($secondary-color, 0.5);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.container-tweeter:hover {
+  color: rgba(white, 1);
+  background: rgba($secondary-color, 0.6);
+}
+.container-quote {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5rem;
+  width: 90%;
+  // border:1px solid red;
+}
+.container-source {
+  // border:1px solid red;
+  flex: 1;
+  line-height: 1.5rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-quotebox {
+  padding: 15px;
+  overflow-y: auto;
+  line-height: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba($primary-color, 0.9);
+  text-align: center;
+  width: 100%;
+  min-height: 50vh;
+  border-radius: 15px;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.container {
+  padding: 1rem;
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  min-height: 100vh;
+  // position: fixed;
+  // left: 0;
+  // top: 0;
+  // bottom: 0;
+  // right: 0;
+  // overflow-y : auto;
+}
+.container-quote {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  // user-select:auto;
+}
+.container-source {
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+}
+
+//   body {
+//     font-family: 'Garamond', 'EB Garamond';
+//     font-weight: 400;
+//     color: #46494C;
+//   .island {
+//     background: rgba(197, 195, 198, 0.9);
+//     color: #38302E;
+
+//   .tooltip > .tooltip-inner {
+//     background: rgba(197, 195, 198, 0.9);
+//     color: #38302E;
+//     border: none;
+//     padding: .4em;
+//     font: Garamond;
+//     font-size: 1em;
+//   }
+
+// auto text resizing
+// These values are the minimum and maximum viewport sizes to apply the font scaling
+$min_width: 600;
+$max_width: 1800;
+$min_font: 24;
+$max_font: 40;
+:root {
+  font-size: #{$min_font}px;
+}
+
+@media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+  :root {
+    font-size: calc(
+      #{$min_font}px + (#{$max_font} - #{$min_font}) *
+        (
+           (100vw - #{$min_width}px) / (#{$max_width} - #{$min_width})
+        )
+    );
+  }
+}
+
+@media (min-width: #{$max_width}px) {
+  :root {
+    font-size: #{$max_font}px;
+  }
+}
