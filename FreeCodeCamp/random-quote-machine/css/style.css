@@ -21,6 +21,14 @@ body {
   cursor: pointer;
 }
 
+::-moz-selection {
+  background: inherit;
+}
+
+::selection {
+  background: inherit;
+}
+
 .container-tweeter {
   z-index: 10;
   position: fixed;
@@ -52,8 +60,8 @@ body {
 }
 
 .container-quotebox-padding {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 80%;
+  max-height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
