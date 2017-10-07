@@ -49,9 +49,11 @@ var App = function (_React$Component) {
   App.prototype.getUniqueRandom = function getUniqueRandom() {
     // refill the array if needed
     if (this.state.uniqueRandoms.length <= 0) {
-      for (var i = 0; i < this.state.numRandoms; i++) {
+      for (var i = 0; i < this.state.numRandoms; i++) {if (window.CP.shouldStopExecution(1)){break;}
         this.state.uniqueRandoms.push(i);
       }
+window.CP.exitedLoop(1);
+
     }
     var index = Math.floor(Math.random() * this.state.uniqueRandoms.length);
     var uniqueIndex = this.state.uniqueRandoms[index];
@@ -63,16 +65,22 @@ var App = function (_React$Component) {
   App.prototype.render = function render() {
     return React.createElement(
       "div",
-      { className: "container" },
+      { className: "container", autofocus: true, onClick: this.getNewQuote },
       React.createElement(
         "div",
-        { className: "container-quotebox", autofocus: true, onClick: this.getNewQuote },
-        React.createElement(Quote, { quote: this.state.currentQuote }),
-        React.createElement(Source, { source: this.state.currentSource })
+        { className: "container-quotebox" },
+        React.createElement(
+          "div",
+          { className: "container-quotebox-padding" },
+          React.createElement(Quote, { quote: this.state.currentQuote }),
+          React.createElement(Source, { source: this.state.currentSource })
+        )
       ),
       React.createElement(
         "div",
-        { className: "container-tweeter" },
+        { className: "container-tweeter", onClick: function onClick(e) {
+            e.stopPropagation();
+          } },
         React.createElement(TwitterButton, {
           source: this.state.currentSource,
           quote: this.state.currentQuote
@@ -131,7 +139,7 @@ var TwitterButton = function TwitterButton(_ref3) {
 // });
 
 //list of quotes
-var quotes = [{
+var quotes = [{ quote: "In this world, is the destiny of mankind controlled by some transcendental entity or law? Is it like the hand of God hovering above? At least it is true that man has no control; even over his own will.", source: "Narrator, Berserk" }, {
   quote: "Growth for the sake of growth is the ideology of a cancer cell.",
   source: "Edward Abbey"
 }, {
@@ -468,9 +476,6 @@ var quotes = [{
   quote: "London is too full of fogs and serious people. Whether the fogs produce the serious people, or whether the serious people produce the fogs, I don't know.",
   source: "Oscar Wilde"
 }, {
-  quote: "Not to transmit an experience is to betray it.",
-  source: "Elie Wiesel"
-}, {
   quote: "Whoever wishes to keep a secret must hide the fact that he possesses one.",
   source: "Johann Wolfgang von Goethe"
 }, {
@@ -501,7 +506,7 @@ var quotes = [{
   quote: "Education is the art of conveying a sense of truth by telling a series of decreasing lies.",
   source: "Steven Wittens"
 }, {
-  quote: "I knew that meant you and I would probably never speak again. Or be friends again. Or partners again. I told myself I was okay with it because I knew I was right and I knew it was saving lives. [But now] the thing I can't live with has happened...for all the hard questions I've had to ask, and terrible lies I've had to tell... there's one thing that I'll never be able to tell anyone now. Not my friends or my co-workers or my President... the one thing!! The one thing I should have told you. But now I can't...<br>It wasn't worth it. ",
+  quote: "I knew that meant you and I would probably never speak again. Or be friends again. Or partners again. I told myself I was okay with it because I knew I was right and I knew it was saving lives. [But now] the thing I can't live with has happened...for all the hard questions I've had to ask, and terrible lies I've had to tell... there's one thing that I'll never be able to tell anyone now. Not my friends or my co-workers or my President... the one thing!! The one thing I should have told you. But now I can't...\nIt wasn't worth it. ",
   source: "Anthony Stark, Civil War: The Confession (Earth-616)"
 }, {
   quote: "Until my backup battery charges, I've got nothing. I'm the Very Vincible Iron Man. ",
