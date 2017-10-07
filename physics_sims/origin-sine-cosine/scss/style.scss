@@ -2,10 +2,9 @@ $spacing: 1rem;
 html,
 body {
   height: 100%;
-
   overflow: hidden;
   font-family: Helvetica, Arial, Sans-serif;
-  color: rgba(black, 0.7);
+  color: rgba(0, 0, 51, 0.8);
 }
 * {
   box-sizing: border-box;
@@ -30,8 +29,8 @@ body {
   align-items: center;
   width: 100%;
   justify-content: center;
-  // border-radius: 5px;
   padding: 15px;
+  border: 1px solid rgba(blue, 0.1);
 }
 
 .button:hover,
@@ -46,9 +45,9 @@ body {
 }
 
 #stats-holder {
-  min-height: 30%;
+  min-width: 15rem;
+  min-height: 3.5rem;
   max-height: 50%;
-  padding: 10px;
   position: fixed;
   right: 0;
   top: 0;
@@ -59,23 +58,43 @@ body {
   align-items: space-around;
   font-size: 0.8rem;
 }
-#stats-holder > * > * {
-  // border: 1px solid rgba(blue,.3);
-  width: 100%;
-}
+
 #stats-holder > * {
+  border: 1px solid rgba(blue, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: stretch;
   align-items: center;
   flex-grow: 1;
   width: 100%;
-  text-align: center;
 }
+
+.formula {
+  border-bottom: 1px solid rgba(blue, 0.1);
+}
+
+.equation,
+.formula {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.equation-left {
+  min-width: 1.5rem;
+  text-align: right;
+}
+
 #slider-holder {
   position: fixed;
   bottom: 0;
-  background: rgba(blue, 0.1);
+  background: rgba(blue, 0.2);
+  padding: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -84,73 +103,18 @@ body {
   max-height: 50%;
 }
 #slider-holder > * {
+  margin: 2px;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+  height:100%;
   width: 100%;
-  align-items: space-around;
   flex: 1;
-}
-#slider-holder > * > * {
-}
-
-input[type="range"] {
-}
-input[type="range"]:nth-child(1)::before,
-input[type="range"]:nth-child(2)::before {
-  position: fixed;
-  // font-size: 1rem;
-  color: rgba(black, 0.9);
-}
-input[type="range"]:nth-child(1)::before {
-  content: "amplitude";
-}
-
-input[type="range"]:nth-child(2)::before {
-  content: "frequency";
-}
-
-.equation {
-  width: 100%;
-  display: flex;
-}
-.equation-left {
-  flex: 1;
-  text-align: right;
-  // border: 1px solid green;
-}
-.equation-right {
-  width: 100%;
-  flex: 7;
-  text-align: left;
-}
-
-@media (max-width: 500px) {
-  #stats-holder {
-    display: none;
-  }
-  #slider-holder {
-    min-width: 50vw;
-  }
-}
-
-@media (max-width: 800px) {
-  #stats-holder {
-    max-width: 50%;
-    max-height: 50vh;
-  }
-  #slider-holder {
-    min-width: 50vw;
-    min-height: 20vh;
-  }
 }
 
 .slider {
   -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
-  width: 100%; /* Full-width */
-  height: 100%; /* Specified height */
-  outline: none;
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: 0.1s; //0.2 seconds transition on hover
   transition: opacity 0.1s;
@@ -165,15 +129,56 @@ input[type="range"]:nth-child(2)::before {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  width: 1rem;
-  height: 9vh;
-  background: rgba(blue, 0.7);
+  width: 10%;
+  min-height: 1.5rem;
+    max-height:15rem;
+  background: rgba(blue, 0.5);
   cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
-  width: 1rem; /* Set a specific slider handle width */
-  height: 2rem; /* Slider handle height */
+  width: 10%; /* Set a specific slider handle width */
+  max-height:15rem;
+  min-height: 1.5rem; /* Slider handle height */
   background: rgba(blue, 0.7);
   cursor: pointer;
+}
+
+input[type="range"] {
+}
+input[type="range"]:nth-child(1)::before,
+input[type="range"]:nth-child(2)::before {
+  position: fixed;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 51, 0.8);
+  margin-left: 2px;
+  margin-top: 2px;
+}
+input[type="range"]:nth-child(1)::before {
+  content: "amplitude";
+}
+
+input[type="range"]:nth-child(2)::before {
+  content: "frequency";
+}
+
+@media (max-width: 680px) {
+  #stats-holder {
+    display: none;
+  }
+  #slider-holder {
+    min-width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  #stats-holder {
+    max-width: 50%;
+    max-height: 50%;
+  }
+  #slider-holder {
+    min-width: 50%;
+    min-height: 20%;
+  }
 }

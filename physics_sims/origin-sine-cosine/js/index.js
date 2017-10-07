@@ -36,11 +36,11 @@ function UnitCircle() {
   this.styles = {
     line: { thin: 1, medium: 3, thick: 6 },
     color: {
-      orbital: "purple",
-      area: 234, // of circle
-      graph: "black",
-      cosine: "blue",
-      sine: "green"
+      orbital: "hsl(286, 100%, 30%)",
+      area: "hsl(263, 100%, 95%)", // of circle
+      graph: "hsl(0, 0%, 40%)",
+      cosine: "hsl(120, 100%, 40%)",
+      sine: "hsl(240, 100%, 40%)"
     }
   };
   this.point = { x: 0, y: 0 };
@@ -169,7 +169,7 @@ this.drawAxes();
 
 function UserInterface() {
   this.stats = "";
-  this.amplitude = { min: 25, max: 180, init: 90 };
+  this.amplitude = { min: 25, max: 360, init: 180 };
   this.frequency = { min: 0, max: 12, init: 4 };
   this.adjustingFrequency =false;
   this.createToggles = function() {
@@ -225,7 +225,7 @@ this.changeFrequency = function (){
     this.updateStats();
   };
   this.updateStats = function() {
-    this.stats = "<div>y(t) = amplitude * sin(frequency*t)</div>";
+    this.stats = "<div class = 'formula'>&nbsp;&nbsp;&nbsp;y(t) = amp * sin(f*t)</div>";
     this.stats +=
       "<div class='equation'><div class='equation-left'>" +
       Sim.point.y.toFixed(0) * -1 +
