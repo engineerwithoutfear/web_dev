@@ -49,11 +49,9 @@ var App = function (_React$Component) {
   App.prototype.getUniqueRandom = function getUniqueRandom() {
     // refill the array if needed
     if (this.state.uniqueRandoms.length <= 0) {
-      for (var i = 0; i < this.state.numRandoms; i++) {if (window.CP.shouldStopExecution(1)){break;}
+      for (var i = 0; i < this.state.numRandoms; i++) {
         this.state.uniqueRandoms.push(i);
       }
-window.CP.exitedLoop(1);
-
     }
     var index = Math.floor(Math.random() * this.state.uniqueRandoms.length);
     var uniqueIndex = this.state.uniqueRandoms[index];
