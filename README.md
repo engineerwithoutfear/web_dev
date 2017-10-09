@@ -14,10 +14,6 @@
 
 <A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/weather-report/index.html">Weather Report</a> (jQuery)
 
-<A href="http://engineerwithoutfear.github.io/web_dev/Javascript30/drumset/index.html">Drumset</a> (ES6)
-
-<A href="http://engineerwithoutfear.github.io/web_dev/Javascript30/clock/index.html">Analog Clock</a> (ES6)
-
 ## Visualizations
 
 ### Various science and data visualizations.
