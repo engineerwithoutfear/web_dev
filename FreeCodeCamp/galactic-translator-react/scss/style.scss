@@ -50,11 +50,18 @@ header {
 }
 .language-current:hover {
   background: $orange;
+  cursor: pointer;
 }
 .language-current-text-1 {
   color: $orange;
 }
-
+div {
+  tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+::selection {
+  background: inherit;
+}
 .header-text,
 .language-select,
 .language-current-text {
@@ -87,9 +94,6 @@ header {
 }
 .language-current-text {
 }
-// .language-select-text-1 {
-//   min-width: 30%;
-// }
 
 .header-text-2 {
   color: black;
@@ -110,14 +114,19 @@ textarea {
   width: 100%;
   resize: none;
 }
-
+textarea {
+  font-size: 1rem;
+}
 textarea,
 .panel-output {
-  background-color: black;
+  background: rgba($lightBlue, 0.05);
   color: white;
   border-top: 5px solid $lightBlue;
   border-bottom: 5px solid $lightBlue;
   box-sizing: border-box;
+}
+.panel-output {
+  font-size: 1.3rem;
 }
 textarea,
 p {
@@ -161,7 +170,7 @@ p {
 }
 .output-text,
 textarea {
-  font-size: 1.5rem;
+  // font-size: 1.5rem;
 }
 
 @-webkit-keyframes rotation {

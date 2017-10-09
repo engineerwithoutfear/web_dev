@@ -40,10 +40,24 @@ header {
 
 .language-current:hover {
   background: #ff9900;
+  cursor: pointer;
 }
 
 .language-current-text-1 {
   color: #ff9900;
+}
+
+div {
+  tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-moz-selection {
+  background: inherit;
+}
+
+::selection {
+  background: inherit;
 }
 
 .header-text,
@@ -100,13 +114,21 @@ textarea {
   resize: none;
 }
 
+textarea {
+  font-size: 1rem;
+}
+
 textarea,
 .panel-output {
-  background-color: black;
+  background: rgba(153, 153, 204, 0.05);
   color: white;
   border-top: 5px solid #9999cc;
   border-bottom: 5px solid #9999cc;
   box-sizing: border-box;
+}
+
+.panel-output {
+  font-size: 1.3rem;
 }
 
 textarea,
@@ -156,11 +178,6 @@ p {
 .screensaver-visible {
   -webkit-animation: rotation 5s infinite linear;
           animation: rotation 5s infinite linear;
-}
-
-.output-text,
-textarea {
-  font-size: 1.5rem;
 }
 
 @-webkit-keyframes rotation {

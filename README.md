@@ -45,16 +45,6 @@
 
 ## The Dreg Heap 
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/wikipedia-viewer/index.html">Wikipedia Viewer</a> (jQuery)
-
-<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/visualizing-averages/index.html">Visualizing the Average of Two Numbers</a> (HTML5 Canvas, p5.js)
-
-<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/portfolio-page/index.html">Personal Portfolio Page</a> 
-
-<A href="http://engineerwithoutfear.github.io/web_dev/TheOdinProject/google-homepage/index.html">Recreation of the Google Homepage</a> 
-
-
-
-
+<A HREF="https://github.com/engineerwithoutfear/web_dev/blob/gh-pages/dreg-heap.md">Archive of older projects.</a>
 
 

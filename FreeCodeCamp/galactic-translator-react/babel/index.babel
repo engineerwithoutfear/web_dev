@@ -1,28 +1,27 @@
-//stardate 2263.02
-//User Story: I can type text to be translated into a text area.
-//User Story: I can see a preview of the translated output that is updated as I type.
+// stardate 2263.02
+// User Story: I can type text to be translated into a text area.
+// User Story: I can see a preview of the translated output that is updated as I type.
+const imgUFP =
+  "https://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/galactic-translator-react/css/UFP_Emblem.svg";
 
-const InputPanel = props =>
-  <div className="markdown">
+const InputPanel = (props) =>
+  <div className='panel-input markdown'>
     <textarea
       placeholder={props.placeholderMarkdown}
-      onChange={props.updateState}
+      onChange={props.translateInput}
       value={props.text}
-      // autoFocus
+      autoFocus
     />
   </div>;
 
 const OutputPanel = props =>
-  <div className={"preview"}>
-
-    <div className={props.placeholderPreview ? "screensaver" : "hide-me"}>
-      <img
-        className="ufp"
-        src="https://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/galactic-translator-react/css/UFP_Emblem.svg"
-      />
+  <div className={'panel-output'}>
+    <div className={props.placeholderScreensaver ? 'screensaver-visible' : 'screensaver-invisible'}>
+      <img className="container-ufp" src={props.screensaverURL} />
     </div>
-    <div className="previewText">
-      {" "}<div className={props.language}>
+    <div className="output-text">
+      {" "}
+      <div className={props.currentLanguage}>
         <div dangerouslySetInnerHTML={{ __html: marked(props.text) }} />
       </div>
     </div>
@@ -47,7 +46,7 @@ const LanguageMenu = props =>
     </div>
     <div className="language-current">
       <div className="language-current-text">
-        <span className="language-current-text-1 insets">{props.language}</span>
+        <span className="language-current-text-1 insets">{props.currentLanguage}</span>
       </div>
     </div>
   </div>;
@@ -57,7 +56,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       placeholderMarkdown: "Terminal ready.",
-      placeholderPreview: true,
+      placeholderScreensaver: true,
+      screensaverURL: imgUFP,
       languages: [
         "vulcan",
         "romulan",
@@ -67,28 +67,27 @@ class App extends React.Component {
         "dominion"
       ],
       index: 0,
-      language: "",
-      text: ""
+      currentLanguage: "",
+      text: "",
+      translatedText: ""
     };
-
-    this.updateState = this.updateState.bind(this);
+    this.translateInput = this.translateInput.bind(this);
     this.selectLanguage = this.selectLanguage.bind(this);
     this.updateLanguage = this.updateLanguage.bind(this);
   }
   componentDidMount() {
     this.selectLanguage();
   }
-  updateState(e) {
+  translateInput(e) {
     this.setState({
       text: e.target.value,
-      placeholderPreview: false
+      placeholderScreensaver: false
     });
   }
   selectLanguage() {
-    this.setState({ language: this.state.languages[this.state.index] });
+    this.setState({ currentLanguage: this.state.languages[this.state.index] });
   }
   updateLanguage() {
-
     this.setState(
       {
         index: this.state.index >= this.state.languages.length - 1
@@ -101,28 +100,28 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-island">
         <Header />
-        <div className="display-panel">
+        <div className="container-display ">
           <InputPanel
             placeholderMarkdown={this.state.placeholderMarkdown}
-            updateState={this.updateState}
+            translateInput={this.translateInput}
             value={this.state.text}
           />
           <OutputPanel
-            placeholderPreview={this.state.placeholderPreview}
+            placeholderScreensaver={this.state.placeholderScreensaver}
             text={this.state.text}
-            language={this.state.language}
+            currentLanguage={this.state.currentLanguage}
+            screensaverURL={this.state.screensaverURL}
           />
         </div>
         <LanguageMenu
           onClick={this.updateLanguage}
-          language={this.state.language}
+          currentLanguage={this.state.currentLanguage}
         />
       </div>
     );
   }
 }
 
-// render all the things
-ReactDOM.render(<App />, document.getElementById("container-react"));
+ReactDOM.render(<App />, document.getElementById("root"));
