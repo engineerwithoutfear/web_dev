@@ -35,7 +35,8 @@ body {
 
 .container-page {
   margin: 0 auto;
-  max-width: 90%;
+  width: 80%;
+  max-width:90%;
   max-height: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
