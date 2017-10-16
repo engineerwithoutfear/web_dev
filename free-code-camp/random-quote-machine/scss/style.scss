@@ -1,0 +1,123 @@
+$primary-color: rgb(197, 197, 197); //background-color: #E9E3E6;
+$secondary-color: #46494c;
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: Garamond;
+    font-family: "Garamond", "EB Garamond";
+}
+
+body {
+    background: url("https://raw.githubusercontent.com/engineerwithoutfear/web_dev/gh-pages/free-code-camp/random-quote-machine/css/rain_bg.jpg") no-repeat fixed center;
+    display: flex;
+    height: 100vh;
+}
+
+.container-quotebox,
+.container-tweeter {
+    cursor: pointer;
+}
+
+::selection {
+    background: inherit;
+}
+
+.container-tweeter {
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 3rem;
+    max-width: 20%;
+    height: 2rem;
+    color: rgba($primary-color, 0.9);
+    border-radius: 5px;
+    background: rgba($secondary-color, 0.5);
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-tweeter:hover {
+    color: rgba(white, 1);
+    background: rgba($secondary-color, 0.6);
+}
+
+.container-quote {}
+
+.container-source {}
+
+.container-quotebox-padding {
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-quotebox {
+    line-height: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba($primary-color, 0.9);
+    text-align: center;
+    width: 100%; // flex: 1;
+    border-radius: 15px;
+    width: 80%;
+    height: 70%;
+}
+
+#root {
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.container-quote {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    overflow-y: auto;
+}
+
+.container-source {
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+}
+
+//     color: #46494C; rgba(197, 195, 198, 0.9);  color: #38302E;
+// auto text resizing
+// These values are the minimum and maximum viewport sizes to apply the font scaling
+$min_width: 600;
+$max_width: 1800;
+$min_font: 24;
+$max_font: 36;
+:root {
+    font-size: #{$min_font}px;
+}
+
+@media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+     :root {
+        font-size: calc( #{$min_font}px+(#{$max_font} - #{$min_font}) * ( (100vw - #{$min_width}px) / (#{$max_width} - #{$min_width})));
+    }
+}
+
+@media (min-width: #{$max_width}px) {
+     :root {
+        font-size: #{$max_font}px;
+    }
+}

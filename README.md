@@ -8,21 +8,21 @@
 
 <A HREF="https://engineerwithoutfear.github.io/hammertime/#/">Hammertime</a> Practice for your HAM radio exam.  (React.js, React-Router 4, PWA)
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/random-quote-machine/index.html">Random Quote Machine </a> (React.js)
+<A HREF="http://engineerwithoutfear.github.io/web_dev/free-code-camp/random-quote-machine/index.html">Random Quote Machine </a> (React.js)
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/galactic-translator-react/index.html">Star Trek Galactic Translator </a> (React.js)
+<A HREF="http://engineerwithoutfear.github.io/web_dev/free-code-camp/galactic-translator-react/index.html">Star Trek Galactic Translator </a> (React.js)
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/weather-report/index.html">Weather Report</a> (jQuery)
+<A HREF="http://engineerwithoutfear.github.io/web_dev/free-code-camp/weather-report/index.html">Weather Report</a> (jQuery)
 
 ## Visualizations
 
 ### Various science and data visualizations.
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/origin-sine-cosine/index.html">The Origin of Sine and Cosine</a> (HTML5 Canvas, p5.js)
+<A HREF="http://engineerwithoutfear.github.io/web_dev/physics-sims/origin-sine-cosine/index.html">The Origin of Sine and Cosine</a> (HTML5 Canvas, p5.js)
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/physics_sims/friction-block/index.html">Friction Block on a Ramp</a> (HTML5 Canvas, p5.js)
+<A HREF="http://engineerwithoutfear.github.io/web_dev/physics-sims/friction-block/index.html">Friction Block on a Ramp</a> (HTML5 Canvas, p5.js)
 
-<A HREF="http://engineerwithoutfear.github.io/web_dev/FreeCodeCamp/d3-gdp-bar-chart/">US GDP Bar Chart</a> (d3.js)
+<A HREF="http://engineerwithoutfear.github.io/web_dev/free-code-camp/d3-gdp-bar-chart/">US GDP Bar Chart</a> (d3.js)
 
 
 ## Back End
