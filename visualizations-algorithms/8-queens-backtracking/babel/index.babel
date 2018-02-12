@@ -1,0 +1,187 @@
+const board = $(".chess-board");
+const manualButton = $(".mode-manual");
+const resetButton = $(".button-reset");
+const runAuto = $(".mode-auto");
+const runningButton = $(".button-running");
+let boardData = Array(64).fill(0);
+let running = true;
+let stack = [];
+
+const d = 8;
+let step = 0;
+let loop;
+const unoccupied = 0;
+const considering = 2;
+const consideringAndOccupied = 7;
+const invalid = -1;
+const occupied = 1;
+const current = 5;
+
+const valid = 10;
+let fps = 500;
+const speedController = $("#slider-speed");
+speedController.on("input", function() {
+  fps = 1001 - this.value;
+  console.log("change", fps);
+});
+
+console.log("///");
+init();
+function init() {
+  let blank = Array(64).fill(0);
+  blank[0] = 1;
+  stack.push(blank.slice());
+  solver(blank, 1);
+  draw();
+  loop = requestAnimationFrame(increment);
+}
+
+
+resetButton.on("click", function() {
+  if (running) {
+    pauseSim();
+  }
+  clearBoard();
+});
+runningButton.on("click", function() {
+  running ? pauseSim() : startSim();
+});
+function startSim() {
+  if (step >= stack.length) {
+    step = 0;
+  }
+  running = true;
+  requestAnimationFrame(increment);
+}
+
+function pauseSim() {
+  running = false;
+  cancelAnimationFrame(loop);
+}
+function clearBoard() {
+  step = 0;
+  boardData = stack[step];
+  draw();
+}
+function render(boardData) {
+  let state = "";
+  for (let i = 0; i < d ** 2; i++) {
+    if (boardData[i] == considering) {
+      state +=
+        '<div class="board-square" data-key="' +
+        i +
+        '">' +
+        '<div class="board-square"><div class="considering"></div></div></div>';
+    } else if (boardData[i] == consideringAndOccupied) {
+      state +=
+        '<div class="board-square" data-key="' +
+        i +
+        '">' +
+        '<div class="board-square-queen-bg "><div class="queen considering">&#9813;</div></div></div>';
+    } else if (boardData[i] == current) {
+      state +=
+        '<div class="board-square" data-key="' +
+        i +
+        '">' +
+        '<div class="board-square-queen-bg"><div class="current">??</div></div></div>';
+    } else if (boardData[i] == valid) {
+      state +=
+        '<div class="board-square" data-key="' +
+        i +
+        '">' +
+        '<div class="board-square-queen-bg"><div class="queen valid ">✔</div></div></div>';
+    } else if (boardData[i] == invalid) {
+      state +=
+        '<div class="board-square" data-key="' +
+        i +
+        '">' +
+        '<div class="board-square-queen-bg"><div class="queen invalid">X</div></div></div>';
+    } else if (boardData[i] === occupied) {
+      state +=
+        '<div class="board-square" data-key="' +
+        i +
+        '">' +
+        '<div class="board-square-queen-bg"><div class="queen">&#9813;</div></div></div>';
+    } else {
+      state += '<div class="board-square" data-key="' + i + '">' + "</div>";
+    }
+  }
+  return state;
+}
+
+function draw() {
+  board.html(render(boardData));
+}
+
+function increment() {
+  draw();
+  boardData = stack[step];
+  if (running && step < stack.length) {
+    step += 1;
+    setTimeout(function() {
+      loop = requestAnimationFrame(increment);
+    }, fps);
+  }
+}
+
+function solver(boardData2, x) {
+  let trail = boardData2.slice();
+  if (x == d) {
+    return true;
+  }
+  for (let y = 0; y < d; y++) {
+    let s = x + y * d;
+    if (isLegal(boardData2, s)) {
+      boardData2[s] = 1;
+      let next = solver(boardData2, x + 1);
+      if (next) {
+        return true;
+      }
+      boardData2[s] = 0;
+      stack.push(snapshot(trail, s, invalid));
+    }
+  }
+  return false;
+}
+
+function isLegal(board2, s) {
+  let board = board2.slice();
+  let trail = board2.slice();
+  let x = s % d;
+  let y = Math.floor(s / d); //console.log(x, y);
+  trail[s] = occupied;
+  stack.push(snapshot(trail, s, occupied));
+  for (let i = x, j = y; i >= 0 && j >= 0; i -= 1, j -= 1) {
+    if (x !== i) {
+      stack.push(snapshot(trail, j * d + i, current));
+    }
+    if (board[i + j * d] == 1) {
+      stack.push(snapshot(trail, j * d + i, invalid));
+      return false; // high left diag
+    }
+  }
+  for (let i = x - 1; i >= 0; i--) {
+    stack.push(snapshot(trail, y * d + i, current));
+    if (board[y * d + i] == 1) {
+      stack.push(snapshot(trail, y * d + i, invalid));
+      return false; // left hor
+    }
+  }
+  for (let i = x, j = y; i >= 0 && j < d; i -= 1, j += 1) {
+    if (x !== i) {
+      stack.push(snapshot(trail, j * d + i, current));
+    }
+    if (board[i + j * d] == 1) {
+      stack.push(snapshot(trail, i + j * d, invalid));
+      return false; // low left diag
+    }
+  }
+  stack.push(snapshot(trail, s, valid));
+  return true;
+}
+
+function snapshot(board, i, status) {
+  let tempArray = board.slice();
+  tempArray[i] = status;
+  return tempArray;
+}
